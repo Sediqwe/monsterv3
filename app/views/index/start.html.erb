@@ -1118,7 +1118,7 @@
         <div class="col-4">
           <div class="card">
             <div class="card-header">
-              <h5>Hello card</h5>
+              <h5><%= game.name %></h5>
             </div>
             <%= image_tag(game.image.variant(resize_to_fill: [413, 237], crop: "413x237+0+0"), class: 'img-fluid')%>
             <div class="card-body">
