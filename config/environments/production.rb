@@ -12,7 +12,7 @@ Rails.application.configure do
     'x-frame-options' => 'sameorigin'
   }
   config.hosts << "sediqwe.eu"
-  GA.tracker = "G-5Y9BZL1H1F"
+ 
 
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
