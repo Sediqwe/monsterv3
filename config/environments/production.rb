@@ -5,6 +5,14 @@ Rails.application.configure do
 
   # Code is not reloaded between requests.
   config.cache_classes = true
+  config.active_storage.service_urls_expire_in = 1.years
+  config.public_file_server.headers = {
+    'Cache-Control' => 'public, max-age=31536000',
+    'x-content-type-options' => 'nosniff',
+    'x-frame-options' => 'sameorigin'
+  }
+  config.hosts << "sediqwe.eu"
+  GA.tracker = "G-5Y9BZL1H1F"
 
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
