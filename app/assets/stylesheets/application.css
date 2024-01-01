@@ -15,7 +15,7 @@
  *= require fonts/fontawesome.css
  *= require style.css
  *= require style-preset.css
- 
+ *= require fonts/phosphor/duotone/style.css
  *= require_self
  */
 
