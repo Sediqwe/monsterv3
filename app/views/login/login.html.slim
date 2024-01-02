@@ -11,9 +11,9 @@
         .card-body
             = form_for :session,  url: :sessions_create do |f|
                 .form-group.mb-3
-                    = f.text_field :name, placeholder: "Felhasználó",  class: "form-control"
+                    = f.text_field :name, placeholder: "Felhasználó",  class: "form-control",autocomplete: "name"
                 .form-group.mb-3
-                    = f.password_field :password, placeholder: "Jelszó",  class: "form-control"
+                    = f.password_field :password, placeholder: "Jelszó",  class: "form-control" , autocomplete: "password"
                 
                 .d-flex.mt-1.justify-content-between.align-items-center
                 .d-grid.mt-4
