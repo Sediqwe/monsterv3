@@ -6,4 +6,8 @@ class User < ApplicationRecord
     has_many :game
     has_one :translater
     has_one_attached :photo , dependent: :delete_all
+    def gravatar_image(size: 150)
+        email_hash = Digest::MD5.hexdigest(email.downcase.strip)
+        gravatar_url = "https://www.gravatar.com/avatar/#{email_hash}?s=#{size}"        
+      end
 end

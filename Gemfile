@@ -2,16 +2,17 @@ source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.2.1"
+gem 'gravatar_image_tag'
 gem 'kaminari'
 gem 'friendly_id', '~> 5.4.0'
 gem 'slim-rails'
 gem 'ransack'
 gem 'mini_magick'
 gem 'rmagick'
-gem "meta-tags"
+gem 'meta-tags'
 gem 'active_storage_validations'
 gem 'simple_form'
-gem "groupdate"
+gem 'groupdate'
 gem 'google-api-client', '~> 0.9', require: 'google/apis/gmail_v1'
 gem 'google-analytics-rails', '1.1.1'
 gem 'rubyzip'

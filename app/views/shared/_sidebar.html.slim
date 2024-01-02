@@ -10,12 +10,19 @@ nav.pc-sidebar
         - if current_user
           .nav-user-image
             a[data-bs-toggle="collapse" href="#navuserlink"]
-              img.user-avtar.rounded-circle[src="../assets2/images/gallery-grid/img-grd-gal-1.jpg" alt="user-image"]
+              -if current_user
+                img.user-avtar.rounded-circle[src="#{current_user.gravatar_image(size: 100)}" alt="user-image"]
+              
+              - else
+                img.user-avtar.rounded-circle[src="../assets2/images/gallery-grid/img-grd-gal-1.jpg" alt="user-image"]
           #navuserlink.pc-user-collpsed.collapse
             h4.mb-0
-              | Jonh Smith
+              = current_user.name
             span
-              | Administrator
+              -if current_user.moderator?
+                | Moderátor
+              -if current_user.admin?
+                | Admin
             ul
               li
                 a.pc-user-links
