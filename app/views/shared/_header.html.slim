@@ -1,0 +1,25 @@
+header.pc-header
+    .header-wrapper
+      .me-auto.pc-mob-drp
+        ul.list-unstyled
+          li.pc-h-item.pc-sidebar-collapse
+            a#sidebar-hide.pc-head-link.ms-0[href="#"]
+              i.ph-duotone.ph-list
+          li.pc-h-item.pc-sidebar-popup
+            a#mobile-collapse.pc-head-link.ms-0[href="#"]
+              i.ph-duotone.ph-list
+          li.dropdown.pc-h-item
+            a.pc-head-link.dropdown-toggle.arrow-none.m-0.trig-drp-search[data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false"]
+              i.ph-duotone.ph-magnifying-glass
+            .dropdown-menu.pc-h-dropdown.drp-search
+              form.px-1
+                .form-group.mb-0.d-flex.align-items-center
+                  input.form-control.border-0.shadow-none[type="search" placeholder="Search here. . ."]
+                  button.btn.btn-light-secondary.btn-search
+                    | Search
+      .ms-auto
+        ul.list-unstyled
+            = render "shared/headertheme"
+            = render "shared/headerlocalmenu"
+            = render "shared/notification"
+            = render "shared/profile"

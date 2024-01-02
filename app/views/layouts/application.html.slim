@@ -1,0 +1,30 @@
+html
+  head
+    title Monsterv3
+    meta name="viewport" content="width=device-width,initial-scale=1"
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag "application", "data-turbo-track": "reload"
+    = javascript_importmap_tags
+  body[data-pc-preset="preset-1" data-pc-sidebar-theme="dark" data-pc-sidebar-caption="true" data-pc-direction="ltr" data-pc-theme="light"]
+    .loader-bg
+      .pc-loader
+        .loader-fill
+    = render "shared/sidebar"
+    = render "shared/header"
+    .pc-container
+      = yield
+    = render "shared/footer"
+    script src="../assets2/js/plugins/popper.min.js"
+    script src="../assets2/js/plugins/simplebar.min.js"
+    script src="../assets2/js/plugins/bootstrap.min.js"
+    script src="../assets2/js/fonts/custom-font.js"
+    script src="../assets2/js/pcoded.js"
+    script src="../assets2/js/plugins/feather.min.js"
+    script layout_change('dark');
+    script layout_sidebar_change('light');
+    script layout_header_change('dark');
+    script change_box_container('false');
+    script layout_caption_change('true');
+    script layout_rtl_change('false');
+    script preset_change("preset-1");

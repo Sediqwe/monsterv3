@@ -1,0 +1,30 @@
+.pc-content
+  .page-header
+    .page-block
+      .row.align-items-center.justify-content-between
+        .col-sm-auto
+          .page-header-title
+            h5.mb-0
+              | Sample Page
+        .col-sm-auto
+          ul.breadcrumb
+            li.breadcrumb-item
+              a[href="../navigation/index.html"]
+                i.ph-duotone.ph-house
+            li.breadcrumb-item
+              a[href="javascript: void(0)"]
+                | Other
+            li.breadcrumb-item[aria-current="page"]
+              | Sample Page
+  .row
+    - games = Game.last(20)
+    - games.each do |game|
+      .col-4
+        .card
+          .card-header
+            h5
+              = game.name
+          = image_tag(game.image.variant(resize_to_fill: [413, 237], crop: "413x237+0+0"), class: 'img-fluid')
+          .card-body
+
+ 
