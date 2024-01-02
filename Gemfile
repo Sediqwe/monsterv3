@@ -14,6 +14,8 @@ gem 'simple_form'
 gem "groupdate"
 gem 'google-api-client', '~> 0.9', require: 'google/apis/gmail_v1'
 gem 'google-analytics-rails', '1.1.1'
+gem 'rubyzip'
+gem 'zip-zip' # will load compatibility for old rubyzip API.
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.8"
 
