@@ -9,15 +9,22 @@
           h4.text-center.text-white.f-w-500.mb-0
             | Belépés a felhasználó neveddel:
         .card-body
-          .form-group.mb-3
-            input#floatingInput.form-control[type="email" placeholder="Felhasználó"]
-          .form-group.mb-3
-            input#floatingInput1.form-control[type="password" placeholder="Jelszó"]
-          .d-flex.mt-1.justify-content-between.align-items-center
+            = form_for :session,  url: :sessions_create do |f|
+                .form-group.mb-3
+                    = f.text_field :name, placeholder: "Felhasználó",  class: "form-control"
+                .form-group.mb-3
+                    = f.password_field :password, placeholder: "Jelszó",  class: "form-control"
+                
+                .d-flex.mt-1.justify-content-between.align-items-center
+                .d-grid.mt-4
+                    button.btn.btn-primary
+                        | Belépés
+                    
+          
+
+         
+          
             
-          .d-grid.mt-4
-            button.btn.btn-primary[type="button"]
-              | Belépés
         .card-footer.border-top
           .d-flex.justify-content-between.align-items-end
             div

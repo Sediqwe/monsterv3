@@ -38,7 +38,6 @@ class SessionsController < ApplicationController
 
   end
   def create
-    
     user = User.find_by(name: user_params[:name].downcase).try(:authenticate, user_params[:password])
     if user
       session[:user_id] = user.id
@@ -48,9 +47,7 @@ class SessionsController < ApplicationController
       sleep 10
       record_attempts("Hibás belépés")
       number = ActivityLog.find_by(ip_address: request.env['REMOTE_ADDR'])
-     flash.now[:login_error] = "Hibás felhasználó / jelszó páros"
-     
-     render 'new'
+      redirect_to login_url, notice: "Hibás név vagy jelszó!"
     end
    end
    

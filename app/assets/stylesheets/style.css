@@ -20534,6 +20534,10 @@ pre[class*=language-] > code {
   width: 40px;
   border-radius: 50%;
 }
+.pc-header .user-avtar2 {
+  
+  border-radius: 0%;
+}
 .pc-header .header-user-profile .pc-head-link {
   width: auto;
   padding: 7px;
