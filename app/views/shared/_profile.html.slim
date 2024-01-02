@@ -5,6 +5,12 @@ li.dropdown.pc-h-item.header-user-profile
     .dropdown-header.d-flex.align-items-center.justify-content-between
       h4.m-0
         | Profile
+        span.badge.bg-danger
+          | Admin
+        span.badge.bg-success
+          | User
+        span.badge.bg-info
+          | Mod
     .dropdown-body
       .profile-notification-scroll.position-relative[style="max-height: calc(100vh - 225px)"]
         ul.list-group.list-group-flush.w-100
@@ -14,63 +20,29 @@ li.dropdown.pc-h-item.header-user-profile
                 img.wid-50.rounded-circle[src="../assets2/images/user/avatar-2.jpg" alt="user-image"]
               .flex-grow-1.mx-3
                 h5.mb-0
-                  | Carson Darrin
-                a.link-primary[href="mailto:carson.darrin@company.io"]
-                  | carson.darrin@company.io
-              span.badge.bg-primary
-                | PRO
+                  = current_user.name 
+                  -if current_user.alias
+                    |(
+                    = current_user.alias
+                    |)
+                a.link-primary[href=""]
+                  = current_user.email
+              span.badge.bg-danger
+                | Admin
+              
           li.list-group-item
             a.dropdown-item[href="#"]
               span.d-flex.align-items-center
                 i.ph-duotone.ph-key
                 span
-                  | Change password
+                  | Jelszó váltás
             a.dropdown-item[href="#"]
               span.d-flex.align-items-center
                 i.ph-duotone.ph-envelope-simple
                 span
                   | Recently mail
-            .user-group
-              img.avtar[src="../assets2/images/user/avatar-1.jpg" alt="user-image"]
-              img.avtar[src="../assets2/images/user/avatar-2.jpg" alt="user-image"]
-              img.avtar[src="../assets2/images/user/avatar-3.jpg" alt="user-image"]
-            a.dropdown-item[href="#"]
-              span.d-flex.align-items-center
-                i.ph-duotone.ph-calendar-blank
-                span
-                  | Schedule meetings
+            
           li.list-group-item
-            a.dropdown-item[href="#"]
-              span.d-flex.align-items-center
-                i.ph-duotone.ph-heart
-                span
-                  | Favorite
-            a.dropdown-item[href="#"]
-              span.d-flex.align-items-center
-                i.ph-duotone.ph-arrow-circle-down
-                span
-                  | Download
-              span.avtar.avtar-xs.rounded-circle.bg-danger.text-white
-                | 10
-          li.list-group-item
-            .dropdown-item
-              span.d-flex.align-items-center
-                i.ph-duotone.ph-globe-hemisphere-west
-                span
-                  | Languages
-              span.flex-shrink-0
-                select.form-select.bg-transparent.form-select-sm.border-0.shadow-none
-                  option[value="1"]
-                    | English
-                  option[value="2"]
-                    | Spain
-                  option[value="3"]
-                    | Arbic
-            a.dropdown-item[href="#"]
-              span.d-flex.align-items-center
-                i.ph-duotone.ph-flag
-                span
-                  | Country
             .dropdown-item
               span.d-flex.align-items-center
                 i.ph-duotone.ph-moon
@@ -83,30 +55,15 @@ li.dropdown.pc-h-item.header-user-profile
               span.d-flex.align-items-center
                 i.ph-duotone.ph-user-circle
                 span
-                  | Edit profile
-            a.dropdown-item[href="#"]
-              span.d-flex.align-items-center
-                i.ph-duotone.ph-star.text-warning
-                span
-                  | Upgrade account
-                span.badge.bg-light-success.border.border-success.ms-2
-                  | NEW
+                  | Beállítások
+            
             a.dropdown-item[href="#"]
               span.d-flex.align-items-center
                 i.ph-duotone.ph-bell
                 span
-                  | Notifications
-            a.dropdown-item[href="#"]
-              span.d-flex.align-items-center
-                i.ph-duotone.ph-gear-six
-                span
-                  | Settings
+                  | Értesítések
+          
           li.list-group-item
-            a.dropdown-item[href="#"]
-              span.d-flex.align-items-center
-                i.ph-duotone.ph-plus-circle
-                span
-                  | Add account
             =link_to logout_path, class:"dropdown-item" do 
               span.d-flex.align-items-center
                 i.ph-duotone.ph-power

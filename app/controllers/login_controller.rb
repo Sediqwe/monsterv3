@@ -1,32 +1,27 @@
 class LoginController < ApplicationController
-  def login
-    
+  #belépés panel megnyitása
+  def login    
   end
-  def registration    
+  #regisztrációs panel megnyitása
+  def registration
+    @user = User.new    
   end
-  
+  #új felhasználó létrehozása
   def create
-    
     @user = User.create(user_params)
     if @user.save
-     redirect_to :sessions_new
+     redirect_to login_path
     else
       flash[:error] = @user.errors.full_messages
-      redirect_to login_reg_path
-     
+      redirect_to registration_path
     end
   end
    
-  
+  #Kijelentkezés a sessionból
   def signout
     session[:user_id] = nil
     redirect_to root_url, notice: "Kilépés OK!"
   end
-
-  def reg
-     @user = User.new
-  end
-
 
   private
   def user_params

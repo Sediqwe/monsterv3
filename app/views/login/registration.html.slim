@@ -1,1 +1,47 @@
-|Registration
+
+-flash[:error] = @user.errors.full_messages if @user.errors.any?
+-if flash[:error].present? 
+    .error-message
+        ul
+            -flash[:error].each do |error|
+                li 
+                    = error
+
+
+
+
+
+.auth-main.v1
+  .bg-overlay.bg-white
+  .auth-wrapper
+    .auth-form
+      a.d-block.mt-5[href="../index.html"]
+        img[src="../assets2/images/logo-white.svg" alt="img"]
+      .card.mb-5.mt-3
+        .card-header.bg-dark
+          h4.text-center.text-white.mb-0.f-w-500
+            | Regisztálj a Gep.Monster oldalra.
+        .card-body
+            = form_for @user,:html => {:class => 'form', autocomplete: "off" } , url: login_create_url  do |f|  
+                .form-group.mb-3
+                    = f.text_field :name,  class: "form-control", placeholder: "Felhasználó", autocomplete: 'false'
+                .form-group.mb-3
+                    = f.text_field :email,  class: "form-control", placeholder: "E-mail", autocomplete: 'disabled'
+                .form-group.mb-3
+                    = f.password_field :password,  class: "form-control", placeholder: "Jelszó", autocomplete: 'disabled'
+                .form-group.mb-3
+                    =  f.password_field :password_confirmation,  class: "form-control", placeholder: "Jelszó újra", autocomplete: 'disabled'
+                .form-group.mb-3
+                    = f.text_field :alias,  class: "form-control", placeholder: "Becenév", autocomplete: 'false'
+                .d-grid.mt-4
+                    button.btn.btn-primary Regisztrálás
+            
+        .card-footer.border-top
+          .d-flex.justify-content-between.align-items-end
+            div
+                h6.f-w-500.mb-0
+                    | Már regisztráltál?
+                =link_to "Belépés", login_path , class: "link-primary"
+              
+            a[href="../index.html"]
+              img[src="../assets2/images/logo-dark-sm.svg" alt="img"]

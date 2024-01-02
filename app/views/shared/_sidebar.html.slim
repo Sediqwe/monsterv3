@@ -1,7 +1,7 @@
 nav.pc-sidebar
   .navbar-wrapper
     .m-header
-      a.b-brand.text-primary[href="../dashboard/index.html"]
+      =link_to root_path , class: "b-brand.text-primary" do
         img.logo-lg[src="../assets2/images/logo-white.svg" alt="logo image"]
         span.badge.bg-danger.rounded-pill.ms-2.theme-version
           | v3.0
