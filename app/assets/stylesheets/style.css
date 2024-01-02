@@ -25777,10 +25777,7 @@ body .tox-tinymce-aux {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  position: relative;
-  background: url(../images/authentication/img-auth-bg.jpg);
-  background-size: cover;
-  background-position: center;
+  position: relative;  
 }
 .auth-main > * {
   position: relative;

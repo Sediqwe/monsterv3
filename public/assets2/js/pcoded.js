@@ -328,7 +328,7 @@ for (var t = 0; t < tc.length; t++) {
 // authentication logo
 var tc = document.querySelectorAll('.auth-main.v2 .img-brand');
 for (var t = 0; t < tc.length; t++) {
-  tc[t].setAttribute('src', '../assets/images/logo-white.svg');
+  tc[t].setAttribute('src', '../assets2/images/logo-white.svg');
 }
 
 // =======================================================
@@ -490,10 +490,10 @@ function layout_change(layout) {
   if (layout == 'dark') {
     dark_flag = true;
     if (document.querySelector('.invoice-logo')) {
-      document.querySelector('.invoice-logo').setAttribute('src', '../assets/images/logo-white.svg');
+      document.querySelector('.invoice-logo').setAttribute('src', '../assets2/images/logo-white.svg');
     }
     if (document.querySelector('.auth-form .card-footer a img')) {
-      document.querySelector('.auth-form .card-footer a img').setAttribute('src', '../assets/images/logo-white-sm.svg');
+      document.querySelector('.auth-form .card-footer a img').setAttribute('src', '../assets2/images/logo-white-sm.svg');
     }
     var control = document.querySelector('.theme-layout .btn.active');
     if (control) {
@@ -503,10 +503,10 @@ function layout_change(layout) {
   } else {
     dark_flag = false;
     if (document.querySelector('.invoice-logo')) {
-      document.querySelector('.invoice-logo').setAttribute('src', '../assets/images/logo-dark.svg');
+      document.querySelector('.invoice-logo').setAttribute('src', '../assets2/images/logo-dark.svg');
     }
     if (document.querySelector('.auth-form .card-footer a img')) {
-      document.querySelector('.auth-form .card-footer a img').setAttribute('src', '../assets/images/logo-dark-sm.svg');
+      document.querySelector('.auth-form .card-footer a img').setAttribute('src', '../assets2/images/logo-dark-sm.svg');
     }
     var control = document.querySelector('.theme-layout .btn.active');
     if (control) {
