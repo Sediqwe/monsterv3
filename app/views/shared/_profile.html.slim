@@ -1,23 +1,19 @@
 li.dropdown.pc-h-item.header-user-profile
   a.pc-head-link.dropdown-toggle.arrow-none.me-0[data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" data-bs-auto-close="outside" aria-expanded="false"]
-    img.user-avtar[src="#{current_user.gravatar_image(size: 100)}" alt="user-image"]
+    = user_image_tag(current_user, "")
+    
   .dropdown-menu.dropdown-user-profile.dropdown-menu-end.pc-h-dropdown
     .dropdown-header.d-flex.align-items-center.justify-content-between
       h4.m-0
-        | Profile
-        span.badge.bg-danger
-          | Admin
-        span.badge.bg-success
-          | User
-        span.badge.bg-info
-          | Mod
+        | Profil
+      
     .dropdown-body
       .profile-notification-scroll.position-relative[style="max-height: calc(100vh - 225px)"]
         ul.list-group.list-group-flush.w-100
           li.list-group-item
             .d-flex.align-items-center
               .flex-shrink-0
-                img.wid-50.rounded-circle[src="#{current_user.gravatar_image(size: 100)}" alt="user-image"]
+                = user_image_tag(current_user , "")
               .flex-grow-1.mx-3
                 h5.mb-0
                   = current_user.name 
@@ -38,25 +34,20 @@ li.dropdown.pc-h-item.header-user-profile
           li.list-group-item
             a.dropdown-item[href="#"]
               span.d-flex.align-items-center
-                i.ph-duotone.ph-key
-                span
-                  | Jelszó váltás
-            a.dropdown-item[href="#"]
-              span.d-flex.align-items-center
                 i.ph-duotone.ph-envelope-simple
                 span
-                  | Recently mail
+                  | Levelezés
             
           li.list-group-item
             .dropdown-item
               span.d-flex.align-items-center
                 i.ph-duotone.ph-moon
                 span
-                  | Dark mode
+                  | Dark mód
               .form-check.form-switch.form-check-reverse.m-0
                 input#dark-mode.form-check-input.f-18[type="checkbox" onclick="dark_mode()" role="switch"]
           li.list-group-item
-            a.dropdown-item[href="#"]
+            = link_to settings_path , class: "dropdown-item" do
               span.d-flex.align-items-center
                 i.ph-duotone.ph-user-circle
                 span

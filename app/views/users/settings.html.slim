@@ -1,0 +1,132 @@
+
+
+.col-sm-12
+  .card
+    .card-header
+      h5
+        | Felhasználói beállítások
+    .card-body
+      .form-group.row
+        label.col-form-label.col-sm-3.text-sm-end
+          | Kép:
+        .col-lg-6.col-sm-7
+          .row
+            - if @user.photo.present?
+              .col-6
+                | GM :
+                br
+                =link_to picturesdeletesettings_path(id: @user) do
+                  = image_tag @user.photo, class: "", widht: "200px", height: "200px"
+            .col-6
+              | Gravatar:
+              br
+              = image_tag @user.gravatar_image(size: 200), class: ""
+          
+      = form_for @user, url: settings_path(id: @user) do |f|
+        .form-group.row
+          label.col-form-label.col-sm-3.text-sm-end
+            | Felhasználó:
+          .col-lg-6.col-sm-7
+            = f.text_field :name , readonly: true, class: "form-control", placeholder: "Felhasználó"
+        .form-group.row
+          label.col-form-label.col-sm-3.text-sm-end
+            | E-mail
+          .col-lg-6.col-sm-7
+            = f.text_field :email, class: "form-control", placeholder: "E-mail cím"
+        .form-group.row
+          label.col-form-label.col-sm-3.text-sm-end
+            | Alias
+            |
+            <span class="link-secondary " data-bs-toggle="tooltip" data-bs-html="true" data-bs-title='<span class="mb-2 d-block">Amennyiben ALIAS van beállítva, azt a nevet jelzi ki az oldal mindenhol</span>'>
+              
+              i.ph-duotone.ph-question
+          .col-lg-6.col-sm-7
+            = f.text_field :alias, class: "form-control", placeholder: "Alias"
+        .form-group.row
+          label.col-form-label.col-sm-3.text-sm-end
+            | Jelszó
+          .col-lg-6.col-sm-7
+            = f.text_field :password, type: "password",  class: "form-control"
+        - if @user.translater_id?
+          .form-group.row
+            label.col-form-label.col-sm-3.text-sm-end
+              | Kép 
+              |
+              <span class="link-secondary" data-bs-toggle="tooltip" data-bs-html="true" data-bs-title='<span class="mb-2 d-block">Minden kép le lesz vágva 200x200 as méretűre. Ha nincs feltöltve semmi, alapértelmezett fotód az GRAVATAR ból lesz kiemelve.</span>'>
+              
+                i.ph-duotone.ph-question
+            .col-lg-6.col-sm-7
+              .dropzone.dz-clickable
+                .fallback
+                  = f.file_field :photo
+        - if current_user.present? 
+          - if current_user.admin? || current_user.moderator?
+            - if current_user.translater_id 
+              .form-group.row
+                label.col-form-label.col-sm-3.text-sm-end
+                  | FORDÍTÓ
+                .col-lg-6.col-sm-7
+                  - if current_user.translater_id
+                    .form-control   
+                    
+                      h3
+                        =  @user.translater.translater_name
+            .form-group.row
+              label.col-form-label.col-sm-3.text-sm-end
+                | Leírás
+              .col-lg-6.col-sm-7
+                = f.text_area :desc , cols: 26, rows: 10, class: "form-control"                        
+            .form-group.row
+              label.col-form-label.col-sm-3.text-sm-end
+                
+              .col-lg-6.col-sm-7
+                  = link_to "Támogatások »", supportlists_path, class: "form-control bg-primary text-black"
+            
+
+          - if current_user.admin?  
+            .form-group.row
+              label.col-form-label.col-sm-3.text-sm-end
+                
+              .col-lg-6.col-sm-7
+                = label :moderator, "Moderátor:", class: "form-check-label"
+                |&nbsp;&nbsp;&nbsp;
+                = f.check_box :moderator, class: "form-check-input"
+            .form-group.row
+              label.col-form-label.col-sm-3.text-sm-end
+                | Fordítói ID
+              .col-lg-6.col-sm-7
+                = select("user", "translater_id", Translater.all.order(translater_name: :ASC).collect {|p| [ p.translater_name, p.id ] }, { include_blank: true, selected: @user.translater_id }, { class: "form-select" })
+
+                
+
+
+        .form-group.row.mb-0
+          span.col-form-label.col-sm-3.text-sm-end
+          .col-lg-6.col-sm-7
+            button.btn.btn-primary.me-2
+              | Alkalmaz
+            = link_to "Mégse", root_path, class:"btn btn-outline-secondary"                
+            
+            
+                
+              
+          
+          
+        
+        
+        
+        
+        
+        
+            
+          
+          
+          
+          
+        
+        
+
+      
+      
+|
+<script src="../assets2/js/plugins/dropzone-amd-module.min.js"></script>

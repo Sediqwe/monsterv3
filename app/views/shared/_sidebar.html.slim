@@ -10,11 +10,7 @@ nav.pc-sidebar
         - if current_user
           .nav-user-image
             a[data-bs-toggle="collapse" href="#navuserlink"]
-              -if current_user
-                img.user-avtar.rounded-circle[src="#{current_user.gravatar_image(size: 100)}" alt="user-image"]
-              
-              - else
-                img.user-avtar.rounded-circle[src="../assets2/images/gallery-grid/img-grd-gal-1.jpg" alt="user-image"]
+              = user_image_tag(current_user, "user-avtar")
           #navuserlink.pc-user-collpsed.collapse
             h4.mb-0
               = current_user.name
@@ -30,10 +26,10 @@ nav.pc-sidebar
                   span
                     | My Account
               li
-                a.pc-user-links
+                =link_to settings_path, class: "pc-user-links" do
                   i.ph-duotone.ph-gear
                   span
-                    | Settings
+                    | Beállítások
               li
                 a.pc-user-links
                   i.ph-duotone.ph-lock-key

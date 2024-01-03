@@ -1,0 +1,9 @@
+- if flash[:error].present? 
+    -flash[:error] = @user.errors.full_messages if @user.errors.any?
+    -if flash[:error].present? 
+        .alert.alert-primary
+            ul
+                -flash[:error].each do |error|
+                    li 
+                        h3
+                            = error
