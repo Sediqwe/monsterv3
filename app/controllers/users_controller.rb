@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :set_users, only: %i[ show edit update destroy ]
   before_action :authorized?, only: %i[show, index, edit destroy update]
   before_action lambda {
-  resize_before_save(users_params[:photo], 200, 200)
+  resize_before_save(users_params[:photo])
 }, only: [:update]
   # GET /users or /users.json
   def index
@@ -81,18 +81,25 @@ class UsersController < ApplicationController
       
     end
   end
-  def resize_before_save(image_param, width, height)
+  def resize_before_save(image_param)
     return unless image_param
-
+  
     begin
+      image = ImageProcessing::MiniMagick
+                .source(image_param)
+                .resize_to_limit(200, 200)
+                .call
+  
+      # Most, hogy a képet kicsinyítettük a kívánt méretre,
+      # vágjuk ki a 200x200-as négyzetet a képből.
+  
       ImageProcessing::MiniMagick
-        .source(image_param)
-        .crop("#{width}x#{height}+0+0")
+        .source(image)
+        .crop("200x200+0+0")
         .call(destination: image_param.tempfile.path)
     rescue StandardError => _e
-      # Do nothing. If this is catching, it probably means the
-      # file type is incorrect, which can be caught later by
-      # model validations.
+      # Do nothing. Ha valami hiba történik, akkor az model
+      # validációkkal kezelhető majd később.
     end
   end
     private
