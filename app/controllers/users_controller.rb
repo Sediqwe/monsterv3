@@ -31,6 +31,7 @@ class UsersController < ApplicationController
     @users.active = true
     respond_to do |format|
       if @users.save
+        
         format.html { redirect_to users_url(@users), notice: "A felhasználó létrehozva." }
         
       else
@@ -46,9 +47,10 @@ class UsersController < ApplicationController
 
       if picture.present?
         picture.purge # A kép törlése az aktuális feltöltéshez kapcsolódóan
-        redirect_to settings_path(id: @user), notice: "A felhasználói adatok módosítva"
+        flash[:notice] = "A felhasználói adatok módosítva"
+        redirect_to settings_path(id: @user)
       else
-        redirect_to settings_path(id: @user), notice: "A felhasználói adatok módosítva"
+        redirect_to settings_path(id: @user), notice: "A felhasználói adatok módosítása sikertelen"
       end
     
   end
@@ -56,13 +58,15 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(users_params)
+        flash[:notice] = "A felhasználói adatok módosítva"
         Translater.where(user_id: current_user.id).update(user_id: 0)
         upd = Translater.find(users_params[:translater_id])
         upd.update(user_id: @user.id)
         upd.save        
         format.html { redirect_to settings_path(id: @user), notice: "A felhasználói adatok módosítva" }        
       else
-        format.html { render :settings, notice: "A felhasználói adatok módosítva"}
+        flash[:error] = @user.errors.full_messages.join(", ") # Az összes hibaüzenet összefűzése
+        format.html { render :settings, status: :unprocessable_entity}
         
       end
     end

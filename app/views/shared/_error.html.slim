@@ -7,3 +7,8 @@
                     li 
                         h3
                             = error
+- if flash[:notice]
+    .alert.alert-primary
+        =flash[:notice]
+
+
