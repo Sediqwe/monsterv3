@@ -6,18 +6,15 @@ html
     = csp_meta_tag
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_importmap_tags
-  body[data-pc-preset="preset-1" data-pc-sidebar-theme="dark" data-pc-sidebar-caption="true" data-pc-direction="ltr" data-pc-theme="light"]
+  body[data-pc-preset="preset-10" data-pc-sidebar-theme="dark" data-pc-sidebar-caption="true" data-pc-direction="ltr"  data-pc-theme="dark"]
     .loader-bg
       .pc-loader
         .loader-fill
     = render "shared/sidebar"
     = render "shared/header"
-    .pc-container
-      .row
-        
-        = render "shared/error"
-        = yield
-    = render "shared/footer"
+    
+    = yield
+    //= render "shared/footer"
     script src="../assets2/js/plugins/popper.min.js"
     script src="../assets2/js/plugins/simplebar.min.js"
     script src="../assets2/js/plugins/bootstrap.min.js"
@@ -29,5 +26,4 @@ html
     script layout_header_change('dark');
     script change_box_container('false');
     script layout_caption_change('true');
-    script layout_rtl_change('true');
-    script preset_change("preset-1");
+    script layout_rtl_change('false');

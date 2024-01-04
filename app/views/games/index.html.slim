@@ -1,35 +1,38 @@
-.pc-content
-  .page-header
-    .page-block
-      .row.align-items-center.justify-content-between
-        .col-sm-auto
-          .page-header-title
-            h5.mb-0
-              | Sample Page
-              = paginate @games
-        .col-sm-auto
-          ul.breadcrumb
-            li.breadcrumb-item
-              a[href="../navigation/index.html"]
-                i.ph-duotone.ph-house
-            li.breadcrumb-item
-              a[href="javascript: void(0)"]
-                | Other
-            li.breadcrumb-item[aria-current="page"]
-              | Sample Page
+.pc-container.bg-dark
   .row
-    - 
-    - @games.each do |game|
-      .col-xs-12.col-sm-6.col-md-4.col-lg-3
-        a[href="/games/#{game.slug}"]
-          .card
-            .card-header
-              h5
-                = game.name
-            = image_tag(game.image.variant(resize_to_fill: [413, 237], crop: "413x237+0+0"), class: 'img-fluid')
-            .card-body
-              -if game.done
-                .list-card__hun-text.blink
-                  |  A játékhoz elérhető kézi fordítás 
+    
+    .pc-content
+      
+      .page-header
+        .page-block
+          .row.align-items-center.justify-content-between
+            .col-sm-auto
+              .page-header-title
+                h5.mb-0
+                  | Sample Page
+                  = paginate @games
+            .col-sm-auto
+              ul.breadcrumb
+                li.breadcrumb-item
+                  a[href="../navigation/index.html"]
+                    i.ph-duotone.ph-house
+                li.breadcrumb-item
+                  a[href="javascript: void(0)"]
+                    | Other
+                li.breadcrumb-item[aria-current="page"]
+                  | Sample Page
+      .row
+        - 
+        - @games.each do |game|
+          .col-xs-12.col-sm-6.col-md-4.col-lg-3
+            a[href="/games/#{game.slug}"]
+              .card
+                .card-header
+                  h5
+                    = game.name
+                = image_tag(game.image.variant(resize_to_fill: [413, 237], crop: "413x237+0+0"), class: 'img-fluid')
+                -if game
+                  .card-body.bg-success.text-dark.border
+                    h3 A játékhoz elérhető kézi fordítás 
 
- 
+    
