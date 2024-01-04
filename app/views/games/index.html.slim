@@ -31,8 +31,10 @@
                   h5
                     = game.name
                 = image_tag(game.image.variant(resize_to_fill: [413, 237], crop: "413x237+0+0"), class: 'img-fluid')
-                -if game
-                  .card-body.bg-success.text-dark.border
-                    h3 A játékhoz elérhető kézi fordítás 
+                div class="d-flex align-items-center justify-content-center" 
+                  div class="p-2 m-2 bg-success shadow rounded-2" style="color:black; width:100%" A játékhoz elérhető kézi fordítás is
+
+                
+                
 
     
