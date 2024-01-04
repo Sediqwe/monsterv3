@@ -9,7 +9,7 @@
             .col-sm-auto
               .page-header-title
                 h5.mb-0
-                  | Sample Page
+                 
                   = paginate @games
             .col-sm-auto
               ul.breadcrumb
@@ -18,9 +18,7 @@
                     i.ph-duotone.ph-house
                 li.breadcrumb-item
                   a[href="javascript: void(0)"]
-                    | Other
-                li.breadcrumb-item[aria-current="page"]
-                  | Sample Page
+                    | Games                
       .row
         - 
         - @games.each do |game|
