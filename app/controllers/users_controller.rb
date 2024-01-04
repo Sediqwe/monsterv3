@@ -87,7 +87,7 @@ class UsersController < ApplicationController
     begin
       image = ImageProcessing::MiniMagick
                 .source(image_param)
-                .resize_to_limit(200, 200)
+                .resize_to_fill(200,200)
                 .call
   
       # Most, hogy a képet kicsinyítettük a kívánt méretre,
@@ -102,6 +102,7 @@ class UsersController < ApplicationController
       # validációkkal kezelhető majd később.
     end
   end
+
     private
     # Use callbacks to share common setup or constraints between actions.
     def set_users

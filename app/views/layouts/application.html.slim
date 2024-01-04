@@ -13,8 +13,10 @@ html
     = render "shared/sidebar"
     = render "shared/header"
     .pc-container
-      = render "shared/error"
-      = yield
+      .row
+        
+        = render "shared/error"
+        = yield
     = render "shared/footer"
     script src="../assets2/js/plugins/popper.min.js"
     script src="../assets2/js/plugins/simplebar.min.js"
@@ -27,5 +29,5 @@ html
     script layout_header_change('dark');
     script change_box_container('false');
     script layout_caption_change('true');
-    script layout_rtl_change('false');
+    script layout_rtl_change('true');
     script preset_change("preset-1");

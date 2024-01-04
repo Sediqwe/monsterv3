@@ -82,10 +82,7 @@ class GamesController < ApplicationController
   def show
     Game.default_timezone = :utc
     @user = Game.friendly.find(params[:id])
-    @mega = Mega.where(game: @user.id)
-    @uzenetek = Uzenet.where(game_id: @user.id).order(id: :DESC)
-    @meta_description = @user.name + " gépi fordítása \n Közvetlen elérés a legnagyobb fordítás fájlokhoz is! Már #{Game.all.size} játékhoz, #{(Upload.all.size + Mega.all.size)} fordítás érhető el."
-    @autoforditoilista = Autoforditoilist.where(game_id:  @user.id)
+    @meta_description = @user.name + " gépi fordítása \n Közvetlen elérés a legnagyobb fordítás fájlokhoz is! Már #{Game.all.size} játékhoz, #{(Upload.all.size)} fordítás érhető el."
     @meta_image = rails_blob_path(@user.image, only_path: true)
     @ytvideo = Youtubevideo.where(game_id: @user.id).where(ready: true).order("RANDOM()")
     

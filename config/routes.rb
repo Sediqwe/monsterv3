@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   get "supportlists", to: "supportlists#index"
   patch "settings", to: "users#update"
   get "picturesdeletesettings", to: "users#picturesdeletesettings"
+  resources :games
 end
