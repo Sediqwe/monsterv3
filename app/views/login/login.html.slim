@@ -1,8 +1,9 @@
 .auth-main.v1
-  = render "shared/error"
+  
   .bg-overlay.bg-white
   .auth-wrapper
     .auth-form
+      = render "shared/error"
       a.d-block.mt-5[href="../index.html"]
         img[src="../assets2/images/logo-white.svg" alt="img"]
       .card.mb-5.mt-3
@@ -35,5 +36,5 @@
                 | Regisztrálás
             = link_to "/" do |todod|
                 img.logo-lg[src="../assets2/images/logo-dark-sm.svg" alt="logo image"]
-                
+script change_box_container('true');               
               

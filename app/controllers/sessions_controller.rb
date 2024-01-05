@@ -45,8 +45,7 @@ class SessionsController < ApplicationController
       redirect_to root_url, notice: "Belépve!"
     else
       sleep 10
-      record_attempts("Hibás belépés")
-      number = ActivityLog.find_by(ip_address: request.env['REMOTE_ADDR'])
+      record_attempts("Hibás belépés" + user_params[:name].downcase)
       redirect_to login_url, notice: "Hibás név vagy jelszó!"
     end
    end

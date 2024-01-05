@@ -851,6 +851,7 @@ progress {
     max-width: 1320px;
   }
 }
+
 :root {
   --bs-breakpoint-xs: 0;
   --bs-breakpoint-sm: 576px;
@@ -4640,7 +4641,6 @@ textarea.is-invalid.dataTable-input {
   margin-bottom: 0;
   color: var(--bs-card-subtitle-color);
 }
-
 .card-text:last-child {
   margin-bottom: 0;
 }
@@ -4651,7 +4651,13 @@ textarea.is-invalid.dataTable-input {
 .card-link + .card-link {
   margin-left: var(--bs-card-spacer-x);
 }
-
+.ph-warning {
+  font-size: 44px; /* Példaérték: az ikonok mérete 24 pixel legyen */
+  /* vagy */
+  color: orange;
+  width: 44px;
+  height: 54px;
+}
 .card-header {
   padding: var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x);
   margin-bottom: 0;
@@ -20907,6 +20913,7 @@ pre[class*=language-] > code {
   top: 60px;
   margin-left: 280px;
   min-height: calc(100vh - 121px);
+  
 }
 .pc-container .pc-content {
   padding-left: 40px;
@@ -21361,7 +21368,7 @@ pre[class*=language-] > code {
 @media (min-width: 1400px) {
   .footer-wrapper.container,
   .pc-content.container {
-    max-width: 1140px;
+    max-width: 90%;
   }
 }
 

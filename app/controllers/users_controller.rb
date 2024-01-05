@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     @users.active = true
     respond_to do |format|
       if @users.save
-        
+        record_activity("Új felhasználó csatlakozott: #{@user.name}")
         format.html { redirect_to users_url(@users), notice: "A felhasználó létrehozva." }
         
       else
@@ -59,6 +59,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update(users_params)
         flash[:notice] = "A felhasználói adatok módosítva"
+        record_activity("Egy felhasználó módosította az adatlapját: #{@user.name}")
         Translater.where(user_id: current_user.id).update(user_id: 0)
         upd = Translater.find(users_params[:translater_id])
         upd.update(user_id: @user.id)
@@ -74,6 +75,7 @@ class UsersController < ApplicationController
 
   # DELETE /users/1 or /users/1.json
   def destroy
+    record_activity("Egy felhasználó törölte magát: #{@user.name}")
     @users.destroy
 
     respond_to do |format|

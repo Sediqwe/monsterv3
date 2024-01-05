@@ -12,8 +12,9 @@ html
         .loader-fill
     = render "shared/sidebar"
     = render "shared/header"
-    
-    = yield
+    .pc-container
+      .pc-content
+        = yield
     //= render "shared/footer"
     script src="../assets2/js/plugins/popper.min.js"
     script src="../assets2/js/plugins/simplebar.min.js"
@@ -23,7 +24,10 @@ html
     script src="../assets2/js/plugins/feather.min.js"
     script layout_change('dark');
     script layout_sidebar_change('dark');
-    script layout_header_change('dark');
-    script change_box_container('false');
+    script layout_header_change('dark');    
+    -  if request.path == root_path
+      script change_box_container('false');
+    -else 
+      script change_box_container('true');
     script layout_caption_change('true');
     script layout_rtl_change('false');

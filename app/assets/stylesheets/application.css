@@ -16,6 +16,7 @@
  *= require style.css
  *= require style-preset.css
  *= require fonts/phosphor/duotone/style.css
+ *= require games.css
  *= require_self
  */
 

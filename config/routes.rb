@@ -11,4 +11,9 @@ Rails.application.routes.draw do
   get "picturesdeletesettings", to: "users#picturesdeletesettings"
   resources :games
   resources :translaters
+  resources :uploads
+  get "upload_plus", to: "upload#upload_plus"
+  get "upload_minus", to: "upload#upload_minus"
+  get "upload_bad", to: "upload#upload_bad"
+  get "upload_bot_reset", to: "upload#upload_bot_reset"
 end
