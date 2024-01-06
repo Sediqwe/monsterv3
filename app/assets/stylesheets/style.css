@@ -5824,18 +5824,18 @@ textarea.is-invalid.dataTable-input {
     margin-left: auto;
   }
   .modal-sm {
-    --bs-modal-width: 300px;
+    --bs-modal-width: 90%;
   }
 }
 @media (min-width: 992px) {
   .modal-lg,
   .modal-xl {
-    --bs-modal-width: 800px;
+    --bs-modal-width: 90%;
   }
 }
 @media (min-width: 1200px) {
   .modal-xl {
-    --bs-modal-width: 1140px;
+    --bs-modal-width: 90%;
   }
 }
 .modal-fullscreen {
