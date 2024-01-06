@@ -156,10 +156,10 @@
                                                                 = t.updated_at.strftime("%Y-%m-%d %H:%M")
                                                                 br
                                                                 - if t.pictures.present?
-                                                                    button.btn.btn-primary.mr-2.mb-2[type="button" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg"]
+                                                                    button.btn.btn-primary.mr-2.mb-2[type="button" data-bs-toggle="modal" data-bs-target=".bd-example-modal-fullscreen"]
                                                                         | Large modal
-                                                                    .modal.fade.bd-example-modal-lg[tabindex="-1" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;"]
-                                                                        .modal-dialog.modal-lg
+                                                                    .modal.fade.bd-example-modal-fullscreen[tabindex="-1" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;"]
+                                                                        .modal-dialog.modal-fullscreen
                                                                             .modal-content
                                                                                 .modal-header
                                                                                     h5#myLargeModalLabel.modal-title.h4
