@@ -33,16 +33,16 @@
                 div
                     h4.game-data__headline
                         | Játék linkek:
-                    hr
+                   
                     - if @game.link_steam.present? 
                         - if @game.link_steam.size > 3
-                            = link_to " Steam »", @game.link_steam, target: "_blank" , class: "btn btn-primary m-3 text-light"
+                            = link_to " Steam »", @game.link_steam, target: "_blank" 
                     - if @game.link_epic.present?
-                        = link_to " Epic »", @game.link_epic, target: "_blank" , class: "btn btn-primary m-3 text-light"
+                        = link_to " Epic »", @game.link_epic, target: "_blank" 
                     - if @game.link_other.present?
-                        = link_to " Egyéb »", @game.link_other, target: "_blank" , class: "btn btn-primary m-3 text-light"
+                        = link_to " Egyéb »", @game.link_other, target: "_blank" 
                     - if @game.link_hun.present?
-                        = link_to " Magyaritasok.hu", @game.link_hun, target: "_blank" , class: "btn btn-primary m-3 text-light"
+                        = link_to " Magyaritasok.hu", @game.link_hun, target: "_blank" 
             .col-md-7.col-lg-5
                 .gme-data__buy-game
                     -if current_user&.admin?  || current_user&.moderator?                                  
@@ -128,7 +128,6 @@
                                             .col-2
                                                 |Verzió:   
                                                 = t.version  
-                                                
                                                 - if t.demo
                                                     | DEMO
                                             .col-2 
@@ -144,6 +143,10 @@
                                                     - adatok = ["green", "pro", "purple", "contrast", "javascript", "typescript", "angular", "firebase", "vue", "rxjs", "node", "cloud-functions", "flutter", "google-maps", "android", "stripe", "machine-learning", "python", "svelte", "react", "ios", "minimum-viable-product", "mvp", "ionic", "nest", "graphql", "electron"]
                                                     span class="tag tag-typescript tag-lg"
                                                         |GPT
+                                            .col-2
+                                                |Feltöltve:
+                                                br
+                                                = t.updated_at.strftime("%Y-%m-%d %H:%M")
                                             - if current_user.present?
                                                 - if t.user == current_user || current_user.admin?
                                                     .col-3
@@ -153,7 +156,7 @@
                                                         -if feltoltes && t.special == true
                                                             =  link_to "Bot Reset" , upload_bot_reset_path(id: t.id), class: "btn btn-warning text-light m-1"
                                                 -if current_user.admin?
-                                                    .col-5
+                                                    .col-3
                                                         .btn.btn-success
                                                             = t.sorrend
                                                         = link_to "+", upload_plus_path(id: t.id), class: "btn btn-success text-light m-1"
@@ -165,7 +168,7 @@
                                                         =link_to "Törlés", t, data: {confirm: "Biztos vagy benne?"}, method: :delete, class: "btn m-1 btn-primary text-light"
                                              
 
-                                    div id="collapse_#{index}" class="accordion-collapse collapse #{"show" if index ==0}" aria-labelledby="heading_#{index}" data-bs-parent="#accordionExample" style=""
+                                    div id="collapse_#{index}" class="accordion-collapse collapse" aria-labelledby="heading_#{index}" data-bs-parent="#accordionExample" style=""
                                         .accordion-body
                                             .col-sm-12
                                                 .card.flat-card
@@ -180,13 +183,15 @@
                                                                                     = link_to rails_blob_path(t.game_files, disposition: :attachment), rel: 'nofollow', id: "letoltes_gomb", datagame: "#{@game.id}", done: "#{t.id}", class: "btn btn-outline-primary rounded shadow" do |link|
                                                                                         i.fas.fa-file-download
                                                                                             = " " + number_to_human_size(t.game_files.byte_size)
+                                                                                        |   »
                                                                             - else 
                                                                                 | 20 másodpercenként 1 letöltés az engedélyezett
                                                                         - else
                                                                             - if t.game_files.present?
-                                                                                = link_to rails_blob_path(t.game_files, disposition: :attachment), rel: 'nofollow', id: "letoltes_gomb", datagame: "#{@game.id}", done: "#{t.id}", class: "btn btn-primary d-inline-flex" do |link|
+                                                                                = link_to rails_blob_path(t.game_files, disposition: :attachment), rel: 'nofollow', id: "letoltes_gomb", datagame: "#{@game.id}", done: "#{t.id}", class: "btn btn-outline-primary d-inline-flex" do |link|
                                                                                     i.fas.fa-file-download style="font-size: 20px"
                                                                                         = "   " + number_to_human_size(t.game_files.byte_size)
+                                                                                        |   »
                                                                 .col-7.text-md-center
                                                                     h5
                                                                         - if t.pictures.present?
@@ -242,13 +247,13 @@
                                                                     .row
                                                                         - adatok = Uploadtranslater.where(upload_id: t)
                                                                         - adatok.each_with_index do |dorka,index2|
-                                                                            .col-3.text
+                                                                            .col-5.text
                                                                                 h5
                                                                                     = link_to dorka.translater.translater_name, translater_path(dorka.translater)
 
                                                                             - mikka = User.find_by(translater_id: dorka.translater)
                                                                             - if mikka
-                                                                            .col-7.text
+                                                                            .col-5.text
                                                                                 h5
                                                                                     -supportlist = Supportlist.where(user_id: mikka)
                                                                                     - supportlist.each do |support|
@@ -262,12 +267,12 @@
                                                                 .col-1
                                                                     
                                                                     i.fa.fa-times.text-primary 
-                                                                .col-1.text-primary  style="font-size:34px;"
+                                                                .col-4.text-primary  style="font-size:34px;"
                                                                       
                                                                     = Download.where(upload_id: t.id).size 
 
                                                                         
-                                                                .col-10.text-md-left
+                                                                .col-7.text-md-left
                                                                     h5                                                                         
                                                                         =t.description
             .col-md-1

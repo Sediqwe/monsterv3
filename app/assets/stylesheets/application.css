@@ -184,4 +184,8 @@ h1.tag {
     color: #313244;
     background: #adecf3
 }
- 
+.truncate-overflow {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
