@@ -9,12 +9,12 @@ class GamesController < ApplicationController
       number = params[:page_n]
       session[:page_n] = number
       if number>"30"
-        session[:page_n] = "30"
+        session[:page_n] = "32"
       end
       
     else
       if session[:page_n].nil?
-        session[:page_n] = "30"
+        session[:page_n] = "32"
       end
     end
     @games = @q.result(distinct: true).order('uploaded_at DESC').page(params[:page]).per(session[:page_n])

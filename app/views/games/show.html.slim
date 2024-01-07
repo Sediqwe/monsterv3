@@ -44,53 +44,61 @@
                     - if @game.link_hun.present?
                         = link_to " Magyaritasok.hu", @game.link_hun, target: "_blank" 
             .col-md-7.col-lg-5
-                .gme-data__buy-game
-                    -if current_user&.admin?  || current_user&.moderator?                                  
-                        |Új gépi magyarítást használó YT videó beküldés:
-                        = text_field_tag (:ytvideo) 
-                        .btn.btn-success id="new_yt" data-id="#{@game.id}"
-                            |BEKÜLDÉS
-                    -@ytvideo.each_with_index do |yt, index|
-                        - video_id = Rack::Utils.parse_query(URI(yt.link).query)["v"]
-                        - if index <1
-                            iframe  width="560" height="315" allowfullscreen="allowfullscreen" src='https://www.youtube.com/embed/#{video_id}?rel=0&autoplay=<%= params[:autoplay] || 0 %>' frameborder='0' allowfullscreenallowfullscreen="allowfullscreen"     mozallowfullscreen="mozallowfullscreen"         msallowfullscreen="msallowfullscreen"         oallowfullscreen="oallowfullscreen"         webkitallowfullscreen="webkitallowfullscreen"
-                            .row
-                                -if current_user&.admin? || current_user&.moderator?
-                                    .col-6
-                                        = text_field_tag ("edit_#{yt.id}"), yt.link , size:45
-                                    -if yt.user_id == current_user.id
-                                        .col-2
-                                            .btn.btn-success id="edit_yt" data-id="#{yt.id}"
-                                                |Csere
-                                        .col-2
-                                            .btn.btn-danger id="delete_yt_#{yt.id}" data-id="#{yt.id}"
-                                                |Törlés
-                                    - else
-                                        .row
-                                            .col-3
-                                                = yt.user.alias || yt.user.name 
-                                                |  töltötte fel.
-                                                br 
-                                                br
-                        -else
-                            - if index == 1
-                                br 
-                                |Egyéb YT videók:
+                -if current_user&.admin?  || current_user&.moderator? 
+                    p.card-text
+                        .alert.alert-info.d-flex.align-items-center[role="info"]
                             
-                                br
-                            = link_to yt.link , target: "_blank"  do 
-                                button class="youtube-button" YouTube #{index}
-                            -if current_user&.admin? || current_user&.moderator?
-                                .row
-                                    .col-6
-                                        = text_field_tag ("edit_#{yt.id}"), yt.link , size:45
-                                    -if yt.user_id == current_user.id
-                                        .col-2
-                                            .btn.btn-success id="edit_yt" data-id="#{yt.id}"
-                                                |Csere
-                                        .col-2
-                                            .btn.btn-danger id="delete_yt_#{yt.id}" data-id="#{yt.id}"
-                                                |Törlés
+                            |YT videó beküldés:
+                            
+                            = text_field_tag :ytvideo, nil, class: 'form-control'
+
+                            .btn.btn-success.m-3 id="new_yt" data-id="#{@game.id}"
+                                |BEKÜLDÉS
+                - if @ytvideo.present?
+                    p.card-text
+                        .alert.alert-info.d-flex.align-items-center[role="alert"]
+                            div.p-3
+                                -@ytvideo.each_with_index do |yt, index|
+                                    - video_id = Rack::Utils.parse_query(URI(yt.link).query)["v"]
+                                    - if index <1
+                                        iframe  width="560" height="315" allowfullscreen="allowfullscreen" src='https://www.youtube.com/embed/#{video_id}?rel=0&autoplay=<%= params[:autoplay] || 0 %>' frameborder='0' allowfullscreenallowfullscreen="allowfullscreen"     mozallowfullscreen="mozallowfullscreen"         msallowfullscreen="msallowfullscreen"         oallowfullscreen="oallowfullscreen"         webkitallowfullscreen="webkitallowfullscreen"
+                                        .row
+                                            -if current_user&.admin? || current_user&.moderator?
+                                                .col-6
+                                                    = text_field_tag ("edit_#{yt.id}"), yt.link , size:45
+                                                -if yt.user_id == current_user.id
+                                                    .col-2
+                                                        .btn.btn-success id="edit_yt" data-id="#{yt.id}"
+                                                            |Csere
+                                                    .col-2
+                                                        .btn.btn-danger id="delete_yt_#{yt.id}" data-id="#{yt.id}"
+                                                            |Törlés
+                                                - else
+                                                    .row
+                                                        .col-3
+                                                            = yt.user.alias || yt.user.name 
+                                                            |  töltötte fel.
+                                                            br 
+                                                            br
+                                    -else
+                                        - if index == 1
+                                            br 
+                                            |Egyéb YT videók:
+                                        
+                                            br
+                                        = link_to yt.link , target: "_blank"  do 
+                                            button class="youtube-button" YouTube #{index}
+                                        -if current_user&.admin? || current_user&.moderator?
+                                            .row
+                                                .col-6
+                                                    = text_field_tag ("edit_#{yt.id}"), yt.link , size:45
+                                                -if yt.user_id == current_user.id
+                                                    .col-2
+                                                        .btn.btn-success id="edit_yt" data-id="#{yt.id}"
+                                                            |Csere
+                                                    .col-2
+                                                        .btn.btn-danger id="delete_yt_#{yt.id}" data-id="#{yt.id}"
+                                                            |Törlés
                     -if current_user&.admin? || current_user&.moderator?
                         -if @game.stipi && @game.stipiusername.to_i == current_user.id
                             textarea#lemondom name="lemondom" rows="6"
