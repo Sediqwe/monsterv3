@@ -17,15 +17,19 @@
   - 
   - @games.each do |game|
     .col-xs-12.col-sm-6.col-md-4.col-lg-3
+      h6.pt-badge.bg-light-success
+        | DEMO
       a[href="/games/#{game.slug}"]
         .card.truncate-overflow
           h3
             = game.name
             |   »
+          
           = image_tag(game.image.variant(resize_to_fill: [413, 237], crop: "413x237+0+0"), class: 'img-fluid')
         
           div class="d-flex align-items-center justify-content-center" 
             div class=" bg-primary shadow rounded-2" style="color:black; width:100%" A játékhoz elérhető kézi fordítás is
+
 
           
                 
