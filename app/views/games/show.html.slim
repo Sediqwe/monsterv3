@@ -201,6 +201,15 @@
                                                                 .row.align-items-center.border-top
                                                                     .col-2
                                                                         h6.m-b-0
+                                                                            
+                                                                            i.fas.fa-image.p-1.f-30[type="button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Leírás"]
+                                                                            
+                                                                    .col-10
+                                                                        h6.m-b-0
+                                                                            =t.pictures.size
+                                                                .row.align-items-center.border-top
+                                                                    .col-2
+                                                                        h6.m-b-0
                                                                             i.fas.fa-download.p-1.f-30[type="button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Letöltve"] 
                                                                             
                                                                     .col-10
@@ -228,21 +237,21 @@
                                                                                 | Készítők:
                                                                             .col-8  
                                                                                 | Támogatás:
-                                                                        h6.m-b-0
+                                                                        h6.m-b-4
                                                                             - adatok = Uploadtranslater.where(upload_id: t)
                                                                             - adatok.each_with_index do |dorka,index2|
                                                                                 .row
                                                                                     .col-4.text
-                                                                                        h5.border-bottom
+                                                                                        h5.border-bottom.p-b-4
                                                                                             = link_to dorka.translater.translater_name, translater_path(dorka.translater)
 
                                                                                     - mikka = User.find_by(translater_id: dorka.translater)
                                                                                     - if mikka
                                                                                         .col-8
-                                                                                            h5.border-bottom
+                                                                                            h5.border-bottom.m-b-4
                                                                                                 -supportlist = Supportlist.where(user_id: mikka)
                                                                                                 - supportlist.each do |support|
-                                                                                                    = link_to support.link,class:"m-1  btn-sm", target: "_blank" do |link|
+                                                                                                    = link_to support.link,class:"m-1 f-20   btn-sm", target: "_blank" do |link|
                                                                                                         = raw(support.iconbootstrap)
                                                                                     br 
 
@@ -310,7 +319,7 @@
                                                                                                 | Csak a készítő által megjelölt verzióra használható!    
 
                                                         -if t.pictures.present?                        
-                                                            .row 
+                                                            .row.p-2 
                                                                 .row.align-items-center
                                                                         .col-12 
                                                                             .alert.alert-primary.d-flex.align-items-center[role="alert"]
@@ -343,8 +352,9 @@
                                                                                             
                                                                                                 |  Letöltés
                                                                                                 |   »
-                                                        h6.pt-badge.bg-light-success
-                                                            | Demo  
+                                                        - if t.demo
+                                                            h6.pt-badge.bg-light-success
+                                                                | Demo  
 
 
 
