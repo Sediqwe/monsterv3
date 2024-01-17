@@ -228,17 +228,17 @@
                                                                             - adatok.each_with_index do |dorka,index2|
                                                                                 .row
                                                                                     .col-4.text
-                                                                                        h5
+                                                                                        h5.border-bottom
                                                                                             = link_to dorka.translater.translater_name, translater_path(dorka.translater)
 
                                                                                     - mikka = User.find_by(translater_id: dorka.translater)
                                                                                     - if mikka
-                                                                                    .col-8.text
-                                                                                        h5
-                                                                                            -supportlist = Supportlist.where(user_id: mikka)
-                                                                                            - supportlist.each do |support|
-                                                                                                = link_to support.link,class:"m-1  btn-sm", target: "_blank" do |link|
-                                                                                                    = raw(support.iconbootstrap)
+                                                                                        .col-8.text
+                                                                                            h5.border-bottom
+                                                                                                -supportlist = Supportlist.where(user_id: mikka)
+                                                                                                - supportlist.each do |support|
+                                                                                                    = link_to support.link,class:"m-1  btn-sm", target: "_blank" do |link|
+                                                                                                        = raw(support.iconbootstrap)
                                                                                     br 
 
 
@@ -248,8 +248,7 @@
                                                                 
                                                                 
                                                                 
-                                                            .col-7
-
+                                                            .col-6
                                                                 - if t.pictures.present?
                                                                     div class="modal fade bd-example-modal-lg extrem_#{t.id}" tabindex="-1" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;"
                                                                         .modal-dialog.modal-lg
