@@ -120,12 +120,12 @@
                                     h2#headingOne.accordion-header
                                         button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_#{index}" aria-expanded="false" aria-controls="collapse_#{index}"
                                             
-                                            .col-2
+                                            .col-xl-2.col-sm-3
                                                 |Verzió:   
                                                 = t.version  
                                                 - if t.demo
                                                     | DEMO
-                                            .col-2 
+                                            .col-xl-2.col-sm-3 
                                                 - filename = t.game_files.filename.to_s.downcase # Az ActiveStorage::Filename-t stringgé alakítjuk.
                                                 - if filename.include? "google"
                                                     span class="tag tag-vue tag-lg"
@@ -138,19 +138,19 @@
                                                     - adatok = ["green", "pro", "purple", "contrast", "javascript", "typescript", "angular", "firebase", "vue", "rxjs", "node", "cloud-functions", "flutter", "google-maps", "android", "stripe", "machine-learning", "python", "svelte", "react", "ios", "minimum-viable-product", "mvp", "ionic", "nest", "graphql", "electron"]
                                                     span class="tag tag-typescript tag-lg"
                                                         |GPT
-                                            .col-2
+                                            .col-xl-2.col-sm-3
                                                 i.ph-duotone.ph-upload.p-2
                                                 = t.updated_at.strftime("%Y-%m-%d %H:%M")
                                             - if current_user.present?
                                                 - if t.user == current_user || current_user.admin?
-                                                    .col-3
+                                                    .col-xl-3.col-sm-12
                                                         =  link_to "Szerkesztés" , edit_upload_path(t.id), class: "btn btn-success text-light m-1"
                                                         -utolso10 = Upload.last(10)
                                                         -feltoltes = utolso10.find { |upload| upload.id == t.id }
                                                         -if feltoltes && t.special == true
                                                             =  link_to "Bot Reset" , upload_bot_reset_path(id: t.id), class: "btn btn-warning text-light m-1"
                                                 -if current_user.admin?
-                                                    .col-3
+                                                    .col-xl-3.col-sm-12
                                                         .btn.btn-success
                                                             = t.sorrend
                                                         = link_to "+", upload_plus_path(id: t.id), class: "btn btn-success text-light m-1"
