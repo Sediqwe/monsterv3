@@ -164,11 +164,11 @@
 
                                     div id="collapse_#{index}" class="accordion-collapse collapse" aria-labelledby="heading_#{index}" data-bs-parent="#accordionExample" style=""
                                         .accordion-body
-                                            .col-xl-12.col-md-12
+                                            .col-xl-12.col-md-12.col-sm-12
                                                 .card.proj-t-card.card-border-primary
                                                     .card-body
                                                         .row 
-                                                            .col-5
+                                                            .col-xl-5.col-sm-12
                                                                 .row.align-items-center.m-b-30
                                                                     .col-2
                                                                         i.fas.fa-desktop.f-20
@@ -234,9 +234,9 @@
                                                                     .col-10
                                                                         .row
                                                                             .col-4
-                                                                                | Készítők:
+                                                                                h6 Készítők:
                                                                             .col-8  
-                                                                                | Támogatás:
+                                                                                h6 Támogatás:
                                                                         h6.m-b-4
                                                                             - adatok = Uploadtranslater.where(upload_id: t)
                                                                             - adatok.each_with_index do |dorka,index2|
@@ -262,7 +262,7 @@
                                                                 
                                                                 
                                                                 
-                                                            .col-6
+                                                            .col-xl-7.col-sm-12
                                                                 - if t.pictures.present?
                                                                     div class="modal fade bd-example-modal-lg extrem_#{t.id}" tabindex="-1" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;"
                                                                         .modal-dialog.modal-lg
@@ -307,34 +307,39 @@
                                                                 - else
                                                                     .row 
                                                                         .row.align-items-center
-                                                                                .col-12 
+                                                                                .col-12.col-sm-12 
                                                                                     .alert.alert-primary.d-flex.align-items-center[role="alert"]
-                                                                                        i.ph-duotone.ph-warning.ph.m-4
-                                                                                        div
+                                                                                        .row
+                                                                                            .col-xl-2.col-sm-12
+                                                                                                i.ph-duotone.ph-warning.ph.m-2
+                                                                                            .col-xl-10.col-sm-12
+                                                                                                div.warning-container
+                                                                                                    h4
+                                                                                                        | Letöltésemmel elfogadom, hogy ezek a fordítások GÉPPEL készültek. 
+                                                                                                        br
+                                                                                                        | A fordítás tartalmazhat: félre fordításokat, angolul maradt szövegelemeket, erősen befolyásolhatják a játékélményt! 
+                                                                                                        br
+                                                                                                        | Csak a készítő által megjelölt verzióra használható!                
+
+                                                        -if t.pictures.present?                        
+                                                            .row
+                                                                .row.align-items-center
+                                                                        .col-xl-12
+                                                                            .alert.alert-primary.d-flex.align-items-center[role="alert"]
+                                                                                .row
+                                                                                    .col-xl-2.col-sm-12
+                                                                                        i.ph-duotone.ph-warning.ph.m-2
+                                                                                    .col-xl-10.col-sm-12
+                                                                                        div.warning-container
                                                                                             h4
                                                                                                 | Letöltésemmel elfogadom, hogy ezek a fordítások GÉPPEL készültek. 
                                                                                                 br
                                                                                                 | A fordítás tartalmazhat: félre fordításokat, angolul maradt szövegelemeket, erősen befolyásolhatják a játékélményt! 
                                                                                                 br
-                                                                                                | Csak a készítő által megjelölt verzióra használható!    
-
-                                                        -if t.pictures.present?                        
-                                                            .row.p-2 
-                                                                .row.align-items-center
-                                                                        .col-12 
-                                                                            .alert.alert-primary.d-flex.align-items-center[role="alert"]
-                                                                                i.ph-duotone.ph-warning.ph.m-4
-                                                                                div
-                                                                                    h4
-                                                                                        | Letöltésemmel elfogadom, hogy ezek a fordítások GÉPPEL készültek. 
-                                                                                        br
-                                                                                        | A fordítás tartalmazhat: félre fordításokat, angolul maradt szövegelemeket, erősen befolyásolhatják a játékélményt! 
-                                                                                        br
-                                                                                        | Csak a készítő által megjelölt verzióra használható!                
+                                                                                                | Csak a készítő által megjelölt verzióra használható!                
                                                         .row.border-top
                                                             .row.align-items-center
-                                                                    .col-5
-                                                                    .col-2
+                                                                    .col-12.text-center
                                                                         h6.m-b-0
                                                                             - if t.bad == false && t.game_files.attached?
                                                                                 - if session[:calm_down]

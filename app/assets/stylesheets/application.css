@@ -194,7 +194,7 @@ h1.tag {
     width: 100%;
     /* Példa: 16:9 arány beállítása (szélesség: 100%, magasság: 0, padding-bottom: 56.25%) */
     height: 315px;
-    padding-bottom: 56.25%;
+   
     overflow: hidden;
   }
 
@@ -206,3 +206,9 @@ h1.tag {
     width: 100%;
     height: 100%;
   }
+.warning-container{
+    
+    width: 100%;
+    overflow: hidden;
+    word-wrap: break-word; 
+}
