@@ -12,24 +12,6 @@
                 = image_tag(@game.image.variant(resize_to_limit: [900, 900]), class: 'img-fluid rounded-md-start') if @game.image.attached?
             
             .col-md-7.col-lg-5.p-2
-            
-                p.card-text
-                    .alert.alert-primary.d-flex.align-items-center[role="alert"]
-                        i.ph-duotone.ph-warning.ph.m-4
-                        div.p-3
-                            h4
-                                | Letöltésemmel elfogadom, hogy ezek a fordítások GÉPPEL készültek. 
-                                br
-                                | A fordítás tartalmazhat: félre fordításokat, angolul maradt szövegelemeket, erősen befolyásolhatják a játékélményt! 
-                                br
-                                | Csak a készítő által megjelölt verzióra használható!
-                                        
-                
-            .col-md-1
-            
-        .row.g-0
-            .col-md-1
-            .col-md-4.col-lg-5 
                 div
                     h4.game-data__headline
                         | Játék linkek:
@@ -42,8 +24,7 @@
                     - if @game.link_other.present?
                         = link_to " Egyéb »", @game.link_other, target: "_blank" 
                     - if @game.link_hun.present?
-                        = link_to " Magyaritasok.hu", @game.link_hun, target: "_blank" 
-            .col-md-7.col-lg-5
+                        = link_to " Magyaritasok.hu", @game.link_hun, target: "_blank"
                 -if current_user&.admin?  || current_user&.moderator? 
                     p.card-text
                         .alert.alert-info.d-flex.align-items-center[role="info"]
@@ -117,7 +98,12 @@
                                     p Még hátra lévő idő: #{days} nap #{hours} óra #{minutes} perc
                                 b Foglaló:
                                 - foglaloadatai =  User.find(@game.stipiusername.to_i)
-                                = foglaloadatai.alias || foglaloadatai.name
+                                = foglaloadatai.alias || foglaloadatai.name 
+                
+                                        
+                
+            .col-md-1
+                
         .row.g-0
             .col-md-1 
             .col-md-10 
@@ -192,6 +178,9 @@
                                                                             =@game.name
                                                                         h6.m-b-0.text-danger
                                                                             |Gépi fordítás
+                                                                            p.card-text
+                                                                
+                        
                                                                 .row.align-items-center
                                                                     .col-2 
                                                                         h6.m-b-0
@@ -254,30 +243,7 @@
 
 
 
-                                                                .row.align-items-center
-                                                                    .col-2
-                                                                        h6.m-b-0
-                                                                            i.fas.fa-file-download.p-1.f-30[type="button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Letöltés"] 
-                                                                            
-                                                                    
-                                                                    .col-10
-                                                                        h6.m-b-0
-                                                                            - if t.bad == false && t.game_files.attached?
-                                                                                - if session[:calm_down]
-                                                                                    - if  Time.now > session[:calm_down]
-                                                                                        - if t.game_files.present?
-                                                                                            = link_to rails_blob_path(t.game_files, disposition: :attachment), rel: 'nofollow', id: "letoltes_gomb", datagame: "#{@game.id}", done: "#{t.id}", class: "btn btn-outline-primary rounded shadow" do |link|
-                                                                                                i.fas.fa-file-download
-                                                                                                    |Letöltés
-                                                                                                |   »
-                                                                                    - else 
-                                                                                        | 20 másodpercenként 1 letöltés az engedélyezett
-                                                                                - else
-                                                                                    - if t.game_files.present?
-                                                                                        = link_to rails_blob_path(t.game_files, disposition: :attachment), rel: 'nofollow', id: "letoltes_gomb", datagame: "#{@game.id}", done: "#{t.id}", class: "btn btn-outline-primary d-inline-flex" do |link|
-                                                                                            
-                                                                                                |  Letöltés
-                                                                                                |   »
+                                                                
                                                                         
                                                                 
                                                                 
@@ -325,7 +291,39 @@
                                                                                         div class="carousel-item active"
                                                                                             img src="#{url_for(pic)}" class="d-block w-100" alt="..."
                                                                                 
-                                                                        
+                                                        .row 
+                                                            .row.align-items-center
+                                                                    .col-12 
+                                                                        .alert.alert-primary.d-flex.align-items-center[role="alert"]
+                                                                            i.ph-duotone.ph-warning.ph.m-4
+                                                                            div
+                                                                                h4
+                                                                                    | Letöltésemmel elfogadom, hogy ezek a fordítások GÉPPEL készültek. 
+                                                                                    br
+                                                                                    | A fordítás tartalmazhat: félre fordításokat, angolul maradt szövegelemeket, erősen befolyásolhatják a játékélményt! 
+                                                                                    br
+                                                                                    | Csak a készítő által megjelölt verzióra használható!                
+                                                        .row 
+                                                            .row.align-items-center
+                                                                    .col-5
+                                                                    .col-2
+                                                                        h6.m-b-0
+                                                                            - if t.bad == false && t.game_files.attached?
+                                                                                - if session[:calm_down]
+                                                                                    - if  Time.now > session[:calm_down]
+                                                                                        - if t.game_files.present?
+                                                                                            = link_to rails_blob_path(t.game_files, disposition: :attachment), rel: 'nofollow', id: "letoltes_gomb", datagame: "#{@game.id}", done: "#{t.id}", class: "btn btn-outline-primary rounded shadow" do |link|
+                                                                                                i.fas.fa-file-download
+                                                                                                    |Letöltés
+                                                                                                |   »
+                                                                                    - else 
+                                                                                        | 20 másodpercenként 1 letöltés az engedélyezett
+                                                                                - else
+                                                                                    - if t.game_files.present?
+                                                                                        = link_to rails_blob_path(t.game_files, disposition: :attachment), rel: 'nofollow', id: "letoltes_gomb", datagame: "#{@game.id}", done: "#{t.id}", class: "btn  btn-outline-primary d-inline-flex" do |link|
+                                                                                            
+                                                                                                |  Letöltés
+                                                                                                |   »
                                                         h6.pt-badge.bg-light-success
                                                             | Demo  
 
