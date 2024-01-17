@@ -181,144 +181,136 @@
                                             .col-xl-12.col-md-12
                                                 .card.proj-t-card.card-border-primary
                                                     .card-body
-                                                        .row.align-items-center.m-b-30
-                                                            .col-auto
-                                                                i.fas.fa-desktop.text-primary.f-20
-                                                                    
-                                                            .col.p-l-0
-                                                                h6.m-b-5
-                                                                    =@game.name
-                                                                h6.m-b-0.text-danger
-                                                                    |Gépi fordítás
-                                                        .row.align-items-center
-                                                            .col-1 
-                                                                h6.m-b-0
-                                                                    i.fas.fa-code-branch.p-1.f-30[type="button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Játék verziója"]
-                                                                    |:
-                                                            .col-11
-                                                                h6.m-b-0
-                                                                    =t.version 
-                                                        .row.align-items-center
-                                                            .col-1 
-                                                                h6.m-b-0
-                                                                    
-                                                                    i.fas.fa-file-word.p-1.f-30[type="button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Leírás"]
-                                                                    |:
-                                                            .col-11
-                                                                h6.m-b-0
-                                                                    =t.description 
-                                                        .row.align-items-center
-                                                            .col-1 
-                                                                h6.m-b-0
-                                                                    
-                                                                    i.fas.fa-language.p-1.f-30[type="button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Fordítók"]
-                                                                    |:
-                                                            .col-11
-                                                                h6.m-b-0
-                                                                    - adatok = Uploadtranslater.where(upload_id: t)
-                                                                        - adatok.each_with_index do |dorka,index2|
-                                                                            .col-5.text
-                                                                                h5
-                                                                                    = link_to dorka.translater.translater_name, translater_path(dorka.translater)
-
-                                                                            - mikka = User.find_by(translater_id: dorka.translater)
-                                                                            - if mikka
-                                                                            .col-5.text
-                                                                                h5
-                                                                                    -supportlist = Supportlist.where(user_id: mikka)
-                                                                                    - supportlist.each do |support|
-                                                                                        = link_to support.link,class:"m-1 btn btn-primary btn-sm", target: "_blank" do |link|
-                                                                                            = raw(support.iconbootstrap)
-                                                                            br 
-
-
-
-                                                        .row.align-items-center
-                                                            .col
-                                                                h6.m-b-0
-                                                                    i.fas.fa-exchange-alt.text-danger.f-18
-                                                            
-                                                            .col
-                                                                h6.m-b-0
-                                                                    - if t.bad == false && t.game_files.attached?
-                                                                        - if session[:calm_down]
-                                                                            - if  Time.now > session[:calm_down]
-                                                                                - if t.game_files.present?
-                                                                                    = link_to rails_blob_path(t.game_files, disposition: :attachment), rel: 'nofollow', id: "letoltes_gomb", datagame: "#{@game.id}", done: "#{t.id}", class: "btn btn-outline-primary rounded shadow" do |link|
-                                                                                        i.fas.fa-file-download
-                                                                                            = " " + number_to_human_size(t.game_files.byte_size)
-                                                                                        |   »
-                                                                            - else 
-                                                                                | 20 másodpercenként 1 letöltés az engedélyezett
-                                                                        - else
-                                                                            - if t.game_files.present?
-                                                                                = link_to rails_blob_path(t.game_files, disposition: :attachment), rel: 'nofollow', id: "letoltes_gomb", datagame: "#{@game.id}", done: "#{t.id}", class: "btn btn-outline-primary d-inline-flex" do |link|
-                                                                                    i.fas.fa-file-download style="font-size: 20px"
-                                                                                        = "   " + number_to_human_size(t.game_files.byte_size)
-                                                                                        |   »
-                                                                   
-                                                        .row.align-items-center.text-center
-                                                            .col
-                                                                h6.m-b-0
-                                                                    | 327
-                                                            .col
-                                                                i.fas.fa-exchange-alt.text-danger.f-18
-                                                            .col
-                                                                h6.m-b-0
-                                                                    
-                                                        .row.align-items-center.text-center
-                                                            .col
-                                                                h6.m-b-0
-                                                                    | 327
-                                                            .col
-                                                                i.fas.fa-exchange-alt.text-danger.f-18
-                                                                |LEírás
-                                                            .col
-                                                                h6.m-b-0
-                                                                    =t.description
-                                                        .row.align-items-center.text-center
-                                                            .col
-                                                                h6.m-b-0
-                                                                    | 327
-                                                            .col
-                                                                i.fas.fa-exchange-alt.text-danger.f-18
-                                                                |Letöltve
-                                                            .col
-                                                                h6.m-b-0
-                                                                    = Download.where(upload_id: t.id).size 
-                                                        - if t.pictures.present?           
-                                                            .row.align-items-center.text-center
-                                                                .col
-                                                                    h6.m-b-0
-                                                                        | Képek
-                                                                .col
-                                                                    i.fas.fa-exchange-alt.text-danger.f-18
-                                                                .col
-
-                                                                    #carouselExampleIndicators.carousel.slide[data-bs-ride="carousel"]
-                                                                        ol.carousel-indicators
-                                                                            -t.pictures.each_with_index do |pic, index|
-                                                                                - if index== 0
-                                                                                    li.active[data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" aria-current="true"]
-                                                                                - else
-                                                                                    li[data-bs-target="#carouselExampleIndicators" data-bs-slide-to="#{index}"]
-                                                                        .carousel-inner
-                                                                            -t.pictures.each_with_index do |pic, index|
-                                                                                - if index==0
-                                                                                    div class="carousel-item active"
-                                                                                        img src="#{url_for(pic)}" class="d-block w-100" alt="..."
-                                                                                -else
-                                                                                    div class="carousel-item"
-                                                                                        img src="#{url_for(pic)}" class="d-block w-100" alt="..."
+                                                        .row 
+                                                            .col-5
+                                                                .row.align-items-center.m-b-30
+                                                                    .col-2
+                                                                        i.fas.fa-desktop.text-primary.f-20
                                                                             
-                                                                        a.carousel-control-prev[href="#carouselExampleIndicators" role="button" data-bs-slide="prev"]
-                                                                            span.carousel-control-prev-icon[aria-hidden="true"]
-                                                                            span.sr-only
-                                                                                | Előző
-                                                                        a.carousel-control-next[href="#carouselExampleIndicators" role="button" data-bs-slide="next"]
-                                                                            span.carousel-control-next-icon[aria-hidden="true"]
-                                                                            span.sr-only
-                                                                                | Következő
+                                                                    .col.p-l-0
+                                                                        h6.m-b-5
+                                                                            =@game.name
+                                                                        h6.m-b-0.text-danger
+                                                                            |Gépi fordítás
+                                                                .row.align-items-center
+                                                                    .col-2 
+                                                                        h6.m-b-0
+                                                                            i.fas.fa-code-branch.p-1.f-30[type="button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Játék verziója"]
+                                                                            
+                                                                    .col-10
+                                                                        h6.m-b-0
+                                                                            =t.version 
+                                                                .row.align-items-center
+                                                                    .col-2
+                                                                        h6.m-b-0
+                                                                            
+                                                                            i.fas.fa-file-word.p-1.f-30[type="button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Leírás"]
+                                                                            
+                                                                    .col-10
+                                                                        h6.m-b-0
+                                                                            =t.description
+                                                                .row.align-items-left
+                                                                    .col-2
+                                                                        h6.m-b-0
+                                                                            i.fas.fa-download.p-1.f-30[type="button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Letöltve"] 
+                                                                            
+                                                                    .col-10
+                                                                        h6.m-b-0
+                                                                            = Download.where(upload_id: t.id).size
+                                                                .row.align-items-center
+                                                                    .col-2
+                                                                        h6.m-b-0
+                                                                       
+                                                                            i.fas.fa-weight-hanging.p-1.f-30[type="button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Mérete"] 
+                                                                            
+                                                                    .col-10
+                                                                        h6.m-b-0
+                                                                            
+                                                                            = " " + number_to_human_size(t.game_files.byte_size) 
+                                                                .row.align-items-center
+                                                                    .col-2 
+                                                                        h6.m-b-0
+                                                                            
+                                                                            i.fas.fa-language.p-1.f-30[type="button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Fordítók"]
+                                                                            
+                                                                    .col-10
+                                                                        h6.m-b-0
+                                                                            - adatok = Uploadtranslater.where(upload_id: t)
+                                                                            - adatok.each_with_index do |dorka,index2|
+                                                                                .row
+                                                                                    .col-2.text
+                                                                                        h5
+                                                                                            = link_to dorka.translater.translater_name, translater_path(dorka.translater)
+
+                                                                                    - mikka = User.find_by(translater_id: dorka.translater)
+                                                                                    - if mikka
+                                                                                    .col-5.text
+                                                                                        h5
+                                                                                            -supportlist = Supportlist.where(user_id: mikka)
+                                                                                            - supportlist.each do |support|
+                                                                                                = link_to support.link,class:"m-1  btn-sm", target: "_blank" do |link|
+                                                                                                    = raw(support.iconbootstrap)
+                                                                                    br 
+
+
+
+                                                                .row.align-items-center
+                                                                    .col-2
+                                                                        h6.m-b-0
+                                                                            i.fas.fa-file-download.p-1.f-30[type="button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Letöltés"] 
+                                                                            
+                                                                    
+                                                                    .col-10
+                                                                        h6.m-b-0
+                                                                            - if t.bad == false && t.game_files.attached?
+                                                                                - if session[:calm_down]
+                                                                                    - if  Time.now > session[:calm_down]
+                                                                                        - if t.game_files.present?
+                                                                                            = link_to rails_blob_path(t.game_files, disposition: :attachment), rel: 'nofollow', id: "letoltes_gomb", datagame: "#{@game.id}", done: "#{t.id}", class: "btn btn-outline-primary rounded shadow" do |link|
+                                                                                                i.fas.fa-file-download
+                                                                                                    |Letöltés
+                                                                                                |   »
+                                                                                    - else 
+                                                                                        | 20 másodpercenként 1 letöltés az engedélyezett
+                                                                                - else
+                                                                                    - if t.game_files.present?
+                                                                                        = link_to rails_blob_path(t.game_files, disposition: :attachment), rel: 'nofollow', id: "letoltes_gomb", datagame: "#{@game.id}", done: "#{t.id}", class: "btn btn-outline-primary d-inline-flex" do |link|
+                                                                                            
+                                                                                                |  Letöltés
+                                                                                                |   »
+                                                                        
+                                                                
+                                                                
+                                                                
+                                                            .col-5
+                                                                - if t.pictures.present?           
+                                                                    .row.align-items-center.text-center
+                                                                        .col-12
+
+                                                                            #carouselExampleIndicators.carousel.slide[data-bs-ride="carousel"]
+                                                                                ol.carousel-indicators
+                                                                                    -t.pictures.each_with_index do |pic, index|
+                                                                                        - if index== 0
+                                                                                            li.active[data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" aria-current="true"]
+                                                                                        - else
+                                                                                            li[data-bs-target="#carouselExampleIndicators" data-bs-slide-to="#{index}"]
+                                                                                .carousel-inner
+                                                                                    -t.pictures.each_with_index do |pic, index|
+                                                                                        - if index==0
+                                                                                            div class="carousel-item active"
+                                                                                                img src="#{url_for(pic)}" class="d-block w-100" alt="..."
+                                                                                        -else
+                                                                                            div class="carousel-item"
+                                                                                                img src="#{url_for(pic)}" class="d-block w-100" alt="..."
+                                                                                    
+                                                                                a.carousel-control-prev[href="#carouselExampleIndicators" role="button" data-bs-slide="prev"]
+                                                                                    span.carousel-control-prev-icon[aria-hidden="true"]
+                                                                                    span.sr-only
+                                                                                        | Előző
+                                                                                a.carousel-control-next[href="#carouselExampleIndicators" role="button" data-bs-slide="next"]
+                                                                                    span.carousel-control-next-icon[aria-hidden="true"]
+                                                                                    span.sr-only
+                                                                                        | Következő
                                                         h6.pt-badge.bg-light-success
                                                             | DEMO  
 
