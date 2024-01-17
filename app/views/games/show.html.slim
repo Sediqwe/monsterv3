@@ -284,7 +284,7 @@
                                                                 
                                                             .col-5
                                                                 - if t.pictures.present?
-                                                                    .modal.fade.bd-example-modal-lg[tabindex="-1" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;"]
+                                                                    div class="modal fade bd-example-modal-lg extrem_#{t.id}" tabindex="-1" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;"
                                                                         .modal-dialog.modal-lg
                                                                             .modal-content
                                                                                 .modal-header
@@ -321,7 +321,7 @@
                                                                              
                                                                             -t.pictures.each_with_index do |pic, index|
                                                                                 - if index==0
-                                                                                    a href="#ex_#{t.id}" type="button" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg"
+                                                                                    a href="#ex_#{t.id}" type="button" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg.extrem_#{t.id}"
                                                                                         div class="carousel-item active"
                                                                                             img src="#{url_for(pic)}" class="d-block w-100" alt="..."
                                                                                 
