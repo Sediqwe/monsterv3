@@ -189,3 +189,20 @@ h1.tag {
     overflow: hidden;
     text-overflow: ellipsis;
   }
+.video-container {
+    position: relative;
+    width: 100%;
+    /* Példa: 16:9 arány beállítása (szélesség: 100%, magasság: 0, padding-bottom: 56.25%) */
+    height: 315px;
+    padding-bottom: 56.25%;
+    overflow: hidden;
+  }
+
+  /* A YouTube videó stílusai */
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }

@@ -38,7 +38,7 @@
                 - if @ytvideo.present?
                     p.card-text
                         .alert.alert-info.d-flex.align-items-center[role="alert"]
-                            div.p-3
+                            div.p-3.video-container
                                 -@ytvideo.each_with_index do |yt, index|
                                     - video_id = Rack::Utils.parse_query(URI(yt.link).query)["v"]
                                     - if index <1
@@ -171,14 +171,14 @@
                                                             .col-5
                                                                 .row.align-items-center.m-b-30
                                                                     .col-2
-                                                                        i.fas.fa-desktop.text-primary.f-20
+                                                                        i.fas.fa-desktop.f-20
                                                                             
-                                                                    .col.p-l-0
-                                                                        h6.m-b-5
+                                                                    .col-10.p-l-2
+                                                                        h5.m-b-5
                                                                             =@game.name
                                                                         h6.m-b-0.text-danger
-                                                                            |Gépi fordítás
-                                                                            p.card-text
+                                                                            | Gépi fordítás
+                                                                        p.card-text
                                                                 
                         
                                                                 .row.align-items-center.border-top
@@ -225,9 +225,9 @@
                                                                     .col-10
                                                                         .row
                                                                             .col-4
-                                                                                | Készítők
+                                                                                | Készítők:
                                                                             .col-8  
-                                                                                | Támogatás
+                                                                                | Támogatás:
                                                                         h6.m-b-0
                                                                             - adatok = Uploadtranslater.where(upload_id: t)
                                                                             - adatok.each_with_index do |dorka,index2|
