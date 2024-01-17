@@ -181,7 +181,7 @@
                                                                             p.card-text
                                                                 
                         
-                                                                .row.align-items-center
+                                                                .row.align-items-center.border-top
                                                                     .col-2 
                                                                         h6.m-b-0
                                                                             i.fas.fa-code-branch.p-1.f-30[type="button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Játék verziója"]
@@ -189,7 +189,7 @@
                                                                     .col-10
                                                                         h6.m-b-0
                                                                             =t.version 
-                                                                .row.align-items-center
+                                                                .row.align-items-center.border-top
                                                                     .col-2
                                                                         h6.m-b-0
                                                                             
@@ -198,7 +198,7 @@
                                                                     .col-10
                                                                         h6.m-b-0
                                                                             =t.description
-                                                                .row.align-items-left
+                                                                .row.align-items-center.border-top
                                                                     .col-2
                                                                         h6.m-b-0
                                                                             i.fas.fa-download.p-1.f-30[type="button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Letöltve"] 
@@ -206,7 +206,7 @@
                                                                     .col-10
                                                                         h6.m-b-0
                                                                             = Download.where(upload_id: t.id).size
-                                                                .row.align-items-center
+                                                                .row.align-items-center.border-top
                                                                     .col-2
                                                                         h6.m-b-0
                                                                        
@@ -216,7 +216,7 @@
                                                                         h6.m-b-0
                                                                             
                                                                             = " " + number_to_human_size(t.game_files.byte_size) 
-                                                                .row.align-items-center
+                                                                .row.align-items-center.border-top
                                                                     .col-2 
                                                                         h6.m-b-0
                                                                             
@@ -248,7 +248,8 @@
                                                                 
                                                                 
                                                                 
-                                                            .col-5
+                                                            .col-7
+
                                                                 - if t.pictures.present?
                                                                     div class="modal fade bd-example-modal-lg extrem_#{t.id}" tabindex="-1" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;"
                                                                         .modal-dialog.modal-lg
@@ -290,20 +291,34 @@
                                                                                     a href="#ex_#{t.id}" type="button" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg.extrem_#{t.id}"
                                                                                         div class="carousel-item active"
                                                                                             img src="#{url_for(pic)}" class="d-block w-100" alt="..."
-                                                                                
-                                                        .row 
-                                                            .row.align-items-center
-                                                                    .col-12 
-                                                                        .alert.alert-primary.d-flex.align-items-center[role="alert"]
-                                                                            i.ph-duotone.ph-warning.ph.m-4
-                                                                            div
-                                                                                h4
-                                                                                    | Letöltésemmel elfogadom, hogy ezek a fordítások GÉPPEL készültek. 
-                                                                                    br
-                                                                                    | A fordítás tartalmazhat: félre fordításokat, angolul maradt szövegelemeket, erősen befolyásolhatják a játékélményt! 
-                                                                                    br
-                                                                                    | Csak a készítő által megjelölt verzióra használható!                
-                                                        .row 
+                                                                - else
+                                                                    .row 
+                                                                        .row.align-items-center
+                                                                                .col-12 
+                                                                                    .alert.alert-primary.d-flex.align-items-center[role="alert"]
+                                                                                        i.ph-duotone.ph-warning.ph.m-4
+                                                                                        div
+                                                                                            h4
+                                                                                                | Letöltésemmel elfogadom, hogy ezek a fordítások GÉPPEL készültek. 
+                                                                                                br
+                                                                                                | A fordítás tartalmazhat: félre fordításokat, angolul maradt szövegelemeket, erősen befolyásolhatják a játékélményt! 
+                                                                                                br
+                                                                                                | Csak a készítő által megjelölt verzióra használható!    
+
+                                                        -if t.pictures.present?                        
+                                                            .row 
+                                                                .row.align-items-center
+                                                                        .col-12 
+                                                                            .alert.alert-primary.d-flex.align-items-center[role="alert"]
+                                                                                i.ph-duotone.ph-warning.ph.m-4
+                                                                                div
+                                                                                    h4
+                                                                                        | Letöltésemmel elfogadom, hogy ezek a fordítások GÉPPEL készültek. 
+                                                                                        br
+                                                                                        | A fordítás tartalmazhat: félre fordításokat, angolul maradt szövegelemeket, erősen befolyásolhatják a játékélményt! 
+                                                                                        br
+                                                                                        | Csak a készítő által megjelölt verzióra használható!                
+                                                        .row.border-top
                                                             .row.align-items-center
                                                                     .col-5
                                                                     .col-2
