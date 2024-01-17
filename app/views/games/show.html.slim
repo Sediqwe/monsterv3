@@ -223,6 +223,11 @@
                                                                             i.fas.fa-language.p-1.f-30[type="button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Fordítók"]
                                                                             
                                                                     .col-10
+                                                                        .row
+                                                                            .col-4
+                                                                                | Készítők
+                                                                            .col-8  
+                                                                                | Támogatás
                                                                         h6.m-b-0
                                                                             - adatok = Uploadtranslater.where(upload_id: t)
                                                                             - adatok.each_with_index do |dorka,index2|
@@ -233,7 +238,7 @@
 
                                                                                     - mikka = User.find_by(translater_id: dorka.translater)
                                                                                     - if mikka
-                                                                                        .col-8.text
+                                                                                        .col-8
                                                                                             h5.border-bottom
                                                                                                 -supportlist = Supportlist.where(user_id: mikka)
                                                                                                 - supportlist.each do |support|
