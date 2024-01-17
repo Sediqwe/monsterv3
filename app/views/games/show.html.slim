@@ -292,13 +292,13 @@
                                                                                         | Képek a játékból
                                                                                     button.btn-close[type="button" data-bs-dismiss="modal" aria-label="Close"]
                                                                                 .modal-body
-                                                                                    #carouselExampleIndicators.carousel.slide[data-bs-ride="carousel"]
+                                                                                    #carouselExampleIndicators1.carousel.slide[data-bs-ride="carousel"]
                                                                                         ol.carousel-indicators
                                                                                             -t.pictures.each_with_index do |pic, index|
                                                                                                 - if index== 0
-                                                                                                    li.active[data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" aria-current="true"]
+                                                                                                    li.active[data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="0" aria-current="true"]
                                                                                                 - else
-                                                                                                    li[data-bs-target="#carouselExampleIndicators" data-bs-slide-to="#{index}"]
+                                                                                                    li[data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="#{index}"]
                                                                                         .carousel-inner
                                                                                             -t.pictures.each_with_index do |pic, index|
                                                                                                 - if index==0
@@ -307,15 +307,15 @@
                                                                                                 -else
                                                                                                     div class="carousel-item"
                                                                                                         img src="#{url_for(pic)}" class="d-block w-100" alt="..."
-
-                                                                                        a.carousel-control-prev[href="#carouselExampleIndicators" role="button" data-bs-slide="prev"]
-                                                                                            span.carousel-control-prev-icon[aria-hidden="true"]
-                                                                                            span.sr-only
-                                                                                                | Előző
-                                                                                        a.carousel-control-next[href="#carouselExampleIndicators" role="button" data-bs-slide="next"]
-                                                                                            span.carousel-control-next-icon[aria-hidden="true"]
-                                                                                            span.sr-only
-                                                                                                | Következő           
+                                                                                        -if t.pictures.size > 1
+                                                                                            a.carousel-control-prev[href="#carouselExampleIndicators1" role="button" data-bs-slide="prev"]
+                                                                                                span.carousel-control-prev-icon[aria-hidden="true"]
+                                                                                                span.sr-only
+                                                                                                    | Előző
+                                                                                            a.carousel-control-next[href="#carouselExampleIndicators1" role="button" data-bs-slide="next"]
+                                                                                                span.carousel-control-next-icon[aria-hidden="true"]
+                                                                                                span.sr-only
+                                                                                                    | Következő           
                                                                     .row.align-items-center.text-center
                                                                         .col-12
 
