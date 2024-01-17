@@ -3,12 +3,11 @@
   <defs>
     <style>
       .cls-1 {
-        font-family: FreckleFace, 'Freckle Face';
+        font-size: 48px;
       }
 
       .cls-2 {
-        fill: #fff;
-        font-size: 48px;
+        font-family: FreckleFace, 'Freckle Face';
       }
 
       .cls-3 {
@@ -17,6 +16,6 @@
     </style>
   </defs>
   <g id="Réteg_1" data-name="Réteg 1">
-    <text class="cls-2" transform="translate(0 42.32)"><tspan class="cls-3" x="0" y="0">G</tspan><tspan class="cls-1" x="35.04" y="0">M</tspan></text>
+    <text class="cls-1" transform="translate(0 42.32)"><tspan class="cls-3" x="0" y="0">G</tspan><tspan class="cls-2" x="35.04" y="0">M</tspan></text>
   </g>
 </svg>
