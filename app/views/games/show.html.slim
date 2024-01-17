@@ -318,13 +318,12 @@
                                                                                                     | Következő           
                                                                     .row.align-items-center.text-center
                                                                         .col-12
-
-                                                                            
-                                                                            -t.pictures.each_with_index do |pic, index|
-                                                                                - if index==0
-                                                                                    a href="#ex_#{t.id}" type="button" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg.data_#{t.id}"
-                                                                                        div class="carousel-item active"
-                                                                                            img src="#{url_for(pic)}" class="d-block w-100" alt="..."
+                                                                            - if t.pictures.present?
+                                                                                -t.pictures.each_with_index do |pic, index|
+                                                                                    - if index==0
+                                                                                        a href="#ex_#{t.id}" type="button" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg.data_#{t.id}"
+                                                                                            div class="carousel-item active"
+                                                                                                img src="#{url_for(pic)}" class="d-block w-100" alt="..."
                                                                                         
                                                                         
                                                         h6.pt-badge.bg-light-success
