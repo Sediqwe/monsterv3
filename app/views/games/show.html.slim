@@ -375,25 +375,18 @@
                                     .col-12
                                         .card.text-white.bg-dark
                                             .card-header
-                                                .row
-                                                    .col-xl-2.col-sm-12
-                                                        |Fordító Sándor
-                                                        span.badge.bg-info.m-2
-                                                            | Fordító
-                                                        br
-                                                        span.text-info.f-w-400
-                                                            | 2024.01.30 20:00
-                                                    .col-xl-9.col-sm-12
-                                                    .col-xl-1.col-sm-12
-                                                        |Válaszol
-                                                        br 
-                                                        |Jelent
+                                                
+                                                |Fordító Sándor
+                                                span.badge.bg-info.m-2
+                                                    | Fordító
+                                               
+                                                   
                                                         
                                                         
                                             .card-body
                                                 h5.card-title.text-white
                                                     = @game.name
-                                                p.card-text.text-muted
+                                                p.card-text
                                                     | There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.
                                                     | There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.
                                                     | There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.
@@ -431,6 +424,39 @@
                                                     | There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.
                                                     | There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.
                                                     | There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.
+                                                
+                                            .card.text-white.bg-dark
+                                                .card-header
+                                                    a.btn.btn-outline-light.m-t-5.collapsed[data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"]
+                                                        | Erre válasz:
+                                                    
+                                                #collapseExample.collapse[style=""]
+                                                    .card-body.p-5
+                                                        .container.bg-info
+                                                            .col-12-p-4
+                                                                .card.text-white.bg-dark
+                                                                    .card-header
+                                                                        
+                                                                        |Fordító Sándor
+                                                                        span.badge.bg-info.m-2
+                                                                            | Fordító
+                                                                        span.text-info.f-w-400
+                                                                            | 2024.01.30 20:00
+                                                                    
+                                                                        
+                                                                                
+                                                                                
+                                                                    .card-body
+                                                                        h5.card-title.text-white
+                                                                            = @game.name
+                                                                        p.card-text
+                                                                            | There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.
+                                                                            | There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.
+                                                                            | There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.
+                                                                            | There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.
+                                                                
+                                                                            
+
                                             .card-footer.bg-dark
                                                 .row 
                                                     .col-xl-2.col-sm-12
