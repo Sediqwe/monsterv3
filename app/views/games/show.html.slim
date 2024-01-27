@@ -69,51 +69,7 @@
 
                             .btn.btn-success.m-3 id="new_yt" data-id="#{@game.id}"
                                 |BEKÜLDÉS
-                - if @ytvideo.present?
-                    p.card-text
-                        .alert.alert-info.d-flex.align-items-center[role="alert"]
-                            div.p-3.video-container
-                                -@ytvideo.each_with_index do |yt, index|
-                                    - video_id = Rack::Utils.parse_query(URI(yt.link).query)["v"]
-                                    - if index <1
-                                        iframe  width="560" height="315" allowfullscreen="allowfullscreen" src='https://www.youtube.com/embed/#{video_id}?rel=0&autoplay=<%= params[:autoplay] || 0 %>' frameborder='0' allowfullscreenallowfullscreen="allowfullscreen"     mozallowfullscreen="mozallowfullscreen"         msallowfullscreen="msallowfullscreen"         oallowfullscreen="oallowfullscreen"         webkitallowfullscreen="webkitallowfullscreen"
-                                        .row
-                                            -if current_user&.admin? || current_user&.moderator?
-                                                .col-6
-                                                    = text_field_tag ("edit_#{yt.id}"), yt.link , size:45
-                                                -if yt.user_id == current_user.id
-                                                    .col-2
-                                                        .btn.btn-success id="edit_yt" data-id="#{yt.id}"
-                                                            |Csere
-                                                    .col-2
-                                                        .btn.btn-danger id="delete_yt_#{yt.id}" data-id="#{yt.id}"
-                                                            |Törlés
-                                                - else
-                                                    .row
-                                                        .col-3
-                                                            = yt.user.alias || yt.user.name 
-                                                            |  töltötte fel.
-                                                            br 
-                                                            br
-                                    -else
-                                        - if index == 1
-                                            br 
-                                            |Egyéb YT videók:
-                                        
-                                            br
-                                        = link_to yt.link , target: "_blank"  do 
-                                            button class="youtube-button" YouTube #{index}
-                                        -if current_user&.admin? || current_user&.moderator?
-                                            .row
-                                                .col-6
-                                                    = text_field_tag ("edit_#{yt.id}"), yt.link , size:45
-                                                -if yt.user_id == current_user.id
-                                                    .col-2
-                                                        .btn.btn-success id="edit_yt" data-id="#{yt.id}"
-                                                            |Csere
-                                                    .col-2
-                                                        .btn.btn-danger id="delete_yt_#{yt.id}" data-id="#{yt.id}"
-                                                            |Törlés
+                
                     -if current_user&.admin? || current_user&.moderator?
                         -if @game.stipi && @game.stipiusername.to_i == current_user.id
                             textarea#lemondom name="lemondom" rows="6"
@@ -151,6 +107,10 @@
                             li.nav-item
                                 a#profile-tab.nav-link.text-uppercase[data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"]
                                     | Fórum
+                            - if @ytvideo.present?
+                                li.nav-item
+                                    a#contact-tab.nav-link.text-uppercase[data-bs-toggle="tab" href="#youtube" role="tab" aria-controls="youtube" aria-selected="false"]
+                                        | YouTube
                             li.nav-item
                                 a#contact-tab.nav-link.text-uppercase[data-bs-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false"]
                                     | Hiba jelzés
@@ -268,7 +228,19 @@
                                                                                 .col-10
                                                                                     h6.m-b-0
                                                                                         
-                                                                                        = " " + number_to_human_size(t.game_files.byte_size) 
+                                                                                        = " " + number_to_human_size(t.game_files.byte_size)
+                                                                            - if current_user
+                                                                                -if current_user.admin? || current_user.moderator?
+                                                                                    .row.align-items-center.border-top
+                                                                                        .col-2
+                                                                                            h6.m-b-0
+                                                                                        
+                                                                                                i.fas.fa-user-secret.p-1.f-30[type="button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="A fájlt feltöltötte"] 
+                                                                                                
+                                                                                        .col-10
+                                                                                            h6.m-b-0
+                                                                                                
+                                                                                                = t.user.name
                                                                             .row.align-items-center.border-top
                                                                                 .col-2 
                                                                                     h6.m-b-0
@@ -500,7 +472,52 @@
                             #contact.tab-pane.fade[role="tabpanel" aria-labelledby="contact-tab"]
                                 p.mb-0
                                     | There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.
-                        
+                            #youtube.tab-pane.fade[role="tabpanel" aria-labelledby="youtube-tab"]
+                                p.mb-4
+                                    p.card-text
+                                        .alert.alert-info.d-flex.align-items-center[role="alert"]
+                                            div.p-3.video-container
+                                                -@ytvideo.each_with_index do |yt, index|
+                                                    - video_id = Rack::Utils.parse_query(URI(yt.link).query)["v"]
+                                                    - if index <1
+                                                        iframe  width="560" height="315" allowfullscreen="allowfullscreen" src='https://www.youtube.com/embed/#{video_id}?rel=0&autoplay=<%= params[:autoplay] || 0 %>' frameborder='0' allowfullscreenallowfullscreen="allowfullscreen"     mozallowfullscreen="mozallowfullscreen"         msallowfullscreen="msallowfullscreen"         oallowfullscreen="oallowfullscreen"         webkitallowfullscreen="webkitallowfullscreen"
+                                                        .row
+                                                            -if current_user&.admin? || current_user&.moderator?
+                                                                .col-6
+                                                                    = text_field_tag ("edit_#{yt.id}"), yt.link , size:45
+                                                                -if yt.user_id == current_user.id
+                                                                    .col-2
+                                                                        .btn.btn-success id="edit_yt" data-id="#{yt.id}"
+                                                                            |Csere
+                                                                    .col-2
+                                                                        .btn.btn-danger id="delete_yt_#{yt.id}" data-id="#{yt.id}"
+                                                                            |Törlés
+                                                                - else
+                                                                    .row
+                                                                        .col-3
+                                                                            = yt.user.alias || yt.user.name 
+                                                                            |  töltötte fel.
+                                                                            br 
+                                                                            br
+                                                    -else
+                                                        - if index == 1
+                                                            br 
+                                                            |Egyéb YT videók:
+                                                        
+                                                            br
+                                                        = link_to yt.link , target: "_blank"  do 
+                                                            button class="youtube-button" YouTube #{index}
+                                                        -if current_user&.admin? || current_user&.moderator?
+                                                            .row
+                                                                .col-6
+                                                                    = text_field_tag ("edit_#{yt.id}"), yt.link , size:45
+                                                                -if yt.user_id == current_user.id
+                                                                    .col-2
+                                                                        .btn.btn-success id="edit_yt" data-id="#{yt.id}"
+                                                                            |Csere
+                                                                    .col-2
+                                                                        .btn.btn-danger id="delete_yt_#{yt.id}" data-id="#{yt.id}"
+                                                                            |Törlés
 
 
 
