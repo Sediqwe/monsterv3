@@ -9,8 +9,8 @@
         .row.g-0 
             .col-md-1.col-xl-1
             .col-md-4.col-lg-5.col-xl-5-p3 
-                = image_tag(@game.image.variant(resize_to_limit: [900, 900]), class: 'img-fluid rounded-md-start m-3 tulkep') if @game.image.attached?
-            .col-md-6.col-lg-5.p-2.col-xl-5
+                = image_tag(@game.image.variant(resize_to_limit: [900, 900]), class: 'img-fluid rounded-md-start m-3') if @game.image.attached?
+            .col-md-6.col-lg-5.p-2.col-xl-5-m-4
                 div
                     .row
                         .col-xl-7
