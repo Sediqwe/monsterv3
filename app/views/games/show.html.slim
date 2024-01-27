@@ -7,24 +7,59 @@
                     h1.gameshowh1
                         =@game.name
         .row.g-0 
-            .col-md-1
-            .col-md-4.col-lg-5
-                = image_tag(@game.image.variant(resize_to_limit: [900, 900]), class: 'img-fluid rounded-md-start') if @game.image.attached?
-            
-            .col-md-7.col-lg-5.p-2
+            .col-md-1.col-xl-1
+            .col-md-4.col-lg-5.col-xl-5 
+                = image_tag(@game.image.variant(resize_to_limit: [900, 900]), class: 'img-fluid rounded-md-start m-3 tulkep') if @game.image.attached?
+            .col-md-1.col-xl-1
+            .col-md-6.col-lg-5.p-2.col-xl-5
                 div
-                    h4.game-data__headline
-                        | Játék linkek:
+                    .row
+                        .col-xl-7
+                            .card
+                                .card-header.d-flex.align-items-center.justify-content-between
+                                    | Játék linkek:
+                                ul.list-group.list-group-flush
+                                    - if @game.link_steam.present?
+                                        li.list-group-item
+                                            .media.align-items-center
+                                                = link_to  @game.link_steam, target: "_blank"  do |link| 
+                                                    i.fab.fa-steam.f-40.text-light
+                                                .media-body.ms-3
+                                                    = link_to  @game.link_steam, target: "_blank"  do |link| 
+                                                        h5.mb-0.f-w-400
+                                                            | Steam
+                                    - if @game.link_epic.present?
+                                        li.list-group-item
+                                            .media.align-items-center
+                                                = link_to  @game.link_epic, target: "_blank"  do |link| 
+                                                    img src="/assets/epic-games.svg" width="50px;"
+                                                    
+                                                .media-body.ms-3
+                                                    = link_to  @game.link_epic, target: "_blank"  do |link| 
+                                                        h5.mb-0.f-w-400
+                                                            | Epic Games
+                                    - if @game.link_other.present?
+                                        li.list-group-item
+                                            .media.align-items-center
+                                                = link_to  @game.link_other, target: "_blank"  do |link| 
+                                                    i.bi.bi-three-dots-vertical.f-40.text-light
+                                                .media-body.ms-3
+                                                    = link_to  @game.link_other, target: "_blank"  do |link| 
+                                                        h5.mb-0.f-w-400
+                                                            | Egyéb
+                                    - if @game.link_hun.present?
+                                        li.list-group-item
+                                            .media.align-items-center
+                                                = link_to  @game.link_hun, target: "_blank"  do |link| 
+                                                    i.fab.fa-product-hunt.f-40.text-light
+                                                .media-body.ms-3
+                                                    = link_to  @game.link_hun, target: "_blank"  do |link| 
+                                                        h5.mb-0.f-w-400
+                                                            | Magyaritasok.hu
+                                    
                    
-                    - if @game.link_steam.present? 
-                        - if @game.link_steam.size > 3
-                            = link_to " Steam »", @game.link_steam, target: "_blank" 
-                    - if @game.link_epic.present?
-                        = link_to " Epic »", @game.link_epic, target: "_blank" 
-                    - if @game.link_other.present?
-                        = link_to " Egyéb »", @game.link_other, target: "_blank" 
-                    - if @game.link_hun.present?
-                        = link_to " Magyaritasok.hu", @game.link_hun, target: "_blank"
+                     
+                    
                 -if current_user&.admin?  || current_user&.moderator? 
                     p.card-text
                         .alert.alert-info.d-flex.align-items-center[role="info"]
@@ -102,7 +137,7 @@
                 
                                         
                 
-            .col-md-1
+            
                 
         .row.g-0
             .col-md-1 
@@ -212,7 +247,7 @@
                                                                                 .col-2
                                                                                     h6.m-b-0
                                                                                         
-                                                                                        i.fas.fa-image.p-1.f-30[type="button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Leírás"]
+                                                                                        i.fas.fa-image.p-1.f-30[type="button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Feltöltött képek"]
                                                                                         
                                                                                 .col-10
                                                                                     h6.m-b-0

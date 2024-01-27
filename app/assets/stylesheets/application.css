@@ -212,3 +212,6 @@ h1.tag {
     overflow: hidden;
     word-wrap: break-word; 
 }
+.tulkep {
+    overflow: auto !important;
+}
