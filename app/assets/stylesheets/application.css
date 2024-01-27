@@ -213,5 +213,6 @@ h1.tag {
     word-wrap: break-word; 
 }
 .tulkep {
-    overflow: auto !important;
+    max-width: 100%;
+    overflow: hidden !important;
 }

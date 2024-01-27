@@ -7,10 +7,10 @@
                     h1.gameshowh1
                         =@game.name
         .row.g-0 
-            .col-md-1.col-xl-1
-            .col-md-4.col-lg-5.col-xl-5-p3 
-                = image_tag(@game.image.variant(resize_to_limit: [900, 900]), class: 'img-fluid rounded-md-start m-3') if @game.image.attached?
-            .col-md-6.col-lg-5.p-2.col-xl-5-m-4
+            .col-1
+            .col-xl-5.tulkep 
+                = image_tag(@game.image.variant(resize_to_limit: [900, 900]), class: 'img-fluid  m-3') if @game.image.attached?
+            .col-md-6.col-lg-5.p-2.col-xl-5.m-2
                 div
                     .row
                         .col-xl-7
