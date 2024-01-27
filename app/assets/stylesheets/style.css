@@ -22084,6 +22084,10 @@ pre[class*=language-] > code {
   transition: all 0.3s ease-in-out;
   position: relative;
 }
+.szoveg {
+  position: absolute;
+  bottom: 0;
+}
 .feed-card .card-body .border-feed i {
   position: absolute;
   top: calc(50% - 20px);
