@@ -20,21 +20,24 @@ nav.pc-sidebar
               -if current_user.admin?
                 | Admin
             ul
-              li
-                a.pc-user-links
-                  i.ph-duotone.ph-user
-                  span
-                    | My Account
+              /*
+                li
+                  a.pc-user-links
+                    i.ph-duotone.ph-user
+                    span
+                      | My Account
+              
               li
                 =link_to settings_path, class: "pc-user-links" do
                   i.ph-duotone.ph-gear
                   span
                     | Beállítások
-              li
-                a.pc-user-links
-                  i.ph-duotone.ph-lock-key
-                  span
-                    | Lock Screen
+              /*
+                li
+                  a.pc-user-links
+                    i.ph-duotone.ph-lock-key
+                    span
+                      | Lock Screen
               li
                 = link_to logout_path, class:"pc-user-links" do
                   i.ph-duotone.ph-power
@@ -47,31 +50,64 @@ nav.pc-sidebar
       ul.pc-navbar
         li.pc-item.pc-caption
           label
-            | Navigation
+            | Infó
         li.pc-item.pc-hasmenu
           a.pc-link[href="#!"]
             span.pc-micon
-              i.ph-duotone.ph-gauge
+              i.fas.fa-comments
             span.pc-mtext
-              | Dashboard
+              | Hozzászólások
+            span.pc-arrow
+              i[data-feather="chevron-right"]
+          ul.pc-submenu
+            - @rss.each do |rss|
+              = link_to rss.link , class: "pc-link" do |link|
+                  - path = URI.parse(rss.link.html_safe).path
+                  - pathname = Pathname.new(path)
+                  li.pc-item title="#{pathname.basename.to_s.gsub("-"," ").upcase}"
+                    
+                    - if rss.link.exclude?("gep-monster.translate.goog")
+                    b
+                      = truncate(pathname.basename.to_s.gsub("-"," ").upcase, length:20, separator: "...")
+                    br
+                    - szoveg = truncate(strip_tags(rss.desc), length: 100, separator: '...')
+                    = szoveg
+                    br
+                    b
+                      |#{rss.user}
+                    br
+
+                    -parsed_date = DateTime.parse(rss.idouj3.to_s) 
+                    |(
+                    |#{parsed_date.strftime("%Y-%m-%d %H:%M") }
+                    |) 
+            
+        li.pc-item.pc-hasmenu
+          a.pc-link[href="#!"]
+            span.pc-micon
+              i.fas.fa-upload
+            span.pc-mtext
+              | Feltöltések
             span.pc-arrow
               i[data-feather="chevron-right"]
           ul.pc-submenu
             li.pc-item
               a.pc-link[href="../dashboard/index.html"]
                 | Default
+        li.pc-item.pc-hasmenu
+          a.pc-link[href="#!"]
+            span.pc-micon
+              i.fas.fa-download
+            span.pc-mtext
+              | Letöltések
+            span.pc-arrow
+              i[data-feather="chevron-right"]
+          ul.pc-submenu
             li.pc-item
-              a.pc-link[href="../dashboard/affiliate.html"]
-                | Affiliate
-            li.pc-item
-              a.pc-link[href="../dashboard/analytics.html"]
-                | Analytics
-            li.pc-item
-              a.pc-link[href="../dashboard/ecommerce.html"]
-                | E-commerce
-            li.pc-item
-              a.pc-link[href="../dashboard/project.html"]
-                | Project
+              a.pc-link[href="../dashboard/index.html"]
+                | Default
+        
+            
         li.pc-item.pc-caption
           label
             | Other
