@@ -8,9 +8,9 @@ header.pc-header
           li.pc-h-item.pc-sidebar-popup
             a#mobile-collapse.pc-head-link.ms-0[href="#"]
               i.ph-duotone.ph-list
-          li.pc-h-item
-          
-            input.form-control.border-1.border-warning.shadow-none[type="search" placeholder="Keresés"]
+          = search_form_for @q, url: games_path do |f|
+            = f.text_field :name_cont, placeholder: "Gyors kereső...", class: "form-control", style: "width:300px !important"
+
               
       .ms-auto
         ul.list-unstyled
