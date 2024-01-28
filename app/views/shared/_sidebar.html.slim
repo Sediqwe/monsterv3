@@ -64,7 +64,7 @@ nav.pc-sidebar
               = link_to rss.link , class: "pc-link" do |link|
                   - path = URI.parse(rss.link.html_safe).path
                   - pathname = Pathname.new(path)
-                  li.pc-item title="#{pathname.basename.to_s.gsub("-"," ").upcase}"
+                  li.pc-item.pt-2 title="#{pathname.basename.to_s.gsub("-"," ").upcase}" style="border-top: 1px solid green;"
                     
                     - if rss.link.exclude?("gep-monster.translate.goog")
                     b
@@ -91,9 +91,16 @@ nav.pc-sidebar
             span.pc-arrow
               i[data-feather="chevron-right"]
           ul.pc-submenu
-            li.pc-item
-              a.pc-link[href="../dashboard/index.html"]
-                | Default
+            -@uploading.each do |t|
+              = link_to game_path(t.game), class: "pc-link" do |link|
+                li.pc-item.pt-2 style="border-top: 1px solid green;"
+                
+                  =t.game.name
+                  br
+                  |(
+                  =t.created_at.strftime("%Y-%m-%d %H:%M") 
+                  |)
+            
         li.pc-item.pc-hasmenu
           a.pc-link[href="#!"]
             span.pc-micon
