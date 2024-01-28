@@ -22,15 +22,16 @@
           h6
             = game.name
             |   »
-          = image_tag(game.image.variant(resize_to_fill: [413, 237], crop: "413x237+0+0"), class: 'img-fluid')
-        
-          div class="d-flex align-items-center justify-content-center"
-            
-            - if game.uploads.joins(:pictures_attachments).exists?
-              i.bi.bi-card-image.text-dark.f-30
-            - yt = Youtubevideo.where(game_id: game.id).where(ready: true).size
-            - if yt > 0
-              img src="yt.png"
+          .position-relative
+            = image_tag(game.image.variant(resize_to_fill: [413, 237], crop: "413x237+0+0"), class: 'img-fluid')
+            .position-absolute.top-0.end-0
+              - if game.uploads.joins(:pictures_attachments).exists?
+                i.bi.bi-card-image.text-dark.f-30
+              - yt = Youtubevideo.where(game_id: game.id).where(ready: true).size
+              - if yt > 0
+                img src="yt.png"
+
+
             - if game.done 
               div class=" bg-primary shadow rounded-2" style="color:black; width:100%" A játékhoz elérhető kézi fordítás is
 .col-sm-auto
