@@ -22,14 +22,23 @@
           h6
             = game.name
             |   »
-          .position-relative
-            = image_tag(game.image.variant(resize_to_fill: [413, 237], crop: "413x237+0+0"), class: 'img-fluid')
-            .position-absolute.top-0.end-0
-              - if game.uploads.joins(:pictures_attachments).exists?
-                i.bi.bi-card-image.text-dark.f-30
-              - yt = Youtubevideo.where(game_id: game.id).where(ready: true).size
-              - if yt > 0
-                img src="yt.png"
+          = image_tag(game.image.variant(resize_to_fill: [413, 237], crop: "413x237+0+0"), class: 'img-fluid', style: "object-fit: contain; position: relative;")
+
+          - if game.uploads.joins(:pictures_attachments).exists?
+            .position-absolute.top-30.left-30
+              i.bi.bi-card-image.text-warning.f-30 style="position: absolute; top: 20; left: 10 !important"
+              - van = 1              
+          - yt = Youtubevideo.where(game_id: game.id).where(ready: true).size
+          - if yt > 0
+            -if van==1
+              - standard = 60
+            - else 
+              - standard = 10
+            = image_tag("yt.png", style: "position: absolute; top: 28; left: #{standard};") 
+
+        
+
+
 
 
             - if game.done 
