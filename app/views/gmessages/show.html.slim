@@ -1,0 +1,10 @@
+p style="color: green" = notice
+
+== render @gmessage
+
+div
+  => link_to "Edit this gmessage", edit_gmessage_path(@gmessage)
+  '|
+  =< link_to "Back to gmessages", gmessages_path
+
+  = button_to "Destroy this gmessage", @gmessage, method: :delete

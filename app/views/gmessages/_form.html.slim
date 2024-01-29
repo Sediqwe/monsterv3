@@ -1,0 +1,22 @@
+= simple_form_for(@gmessage) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  
+  = f.input :title, input_html: { class: 'form-control' }
+  |
+    <script>
+      tinymce.init({
+        selector: 'textarea',
+        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+      });
+    </script>
+    <textarea id="desc">
+      Welcome to TinyMCE!
+    </textarea>
+
+
+  .form-actions
+    = f.button :submit
+

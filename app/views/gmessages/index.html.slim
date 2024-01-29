@@ -1,0 +1,11 @@
+p style="color: green" = notice
+
+h1 Gmessages
+
+#gmessages
+  - @gmessages.each do |gmessage|
+    == render gmessage
+    p
+      = link_to "Show this gmessage", gmessage
+
+= link_to "New gmessage", new_gmessage_path

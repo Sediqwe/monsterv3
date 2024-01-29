@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :gmessages
   root "games#index"
   get "registration", to: "login#registration"
   get "login", to: "login#login"

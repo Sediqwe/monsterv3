@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_03_112155) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_28_152558) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -246,6 +246,21 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_03_112155) do
     t.string "idouj"
     t.datetime "idouj3"
     t.index ["link"], name: "index_gemorsses_on_link", unique: true
+  end
+
+  create_table "gmessages", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "title"
+    t.bigint "game_id", null: false
+    t.bigint "gmessage_id"
+    t.boolean "warn"
+    t.bigint "senduser_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_gmessages_on_game_id"
+    t.index ["gmessage_id"], name: "index_gmessages_on_gmessage_id"
+    t.index ["senduser_id"], name: "index_gmessages_on_senduser_id"
+    t.index ["user_id"], name: "index_gmessages_on_user_id"
   end
 
   create_table "hopps", force: :cascade do |t|
@@ -529,6 +544,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_03_112155) do
     t.string "tam4"
     t.bigint "translater_id"
     t.text "recovery"
+    t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["name"], name: "index_users_on_name", unique: true
     t.index ["slug"], name: "index_users_on_slug", unique: true
     t.index ["translater_id"], name: "index_users_on_translater_id"
@@ -554,7 +570,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_03_112155) do
     t.datetime "updated_at", null: false
     t.boolean "ready", default: true
     t.bigint "user_id", default: 1, null: false
+    t.boolean "discord", default: false
     t.index ["game_id"], name: "index_youtubevideos_on_game_id"
+    t.index ["link"], name: "index_youtubevideos_on_link", unique: true
     t.index ["user_id"], name: "index_youtubevideos_on_user_id"
   end
 
@@ -577,6 +595,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_03_112155) do
   add_foreign_key "downloads", "uploads"
   add_foreign_key "forums", "users"
   add_foreign_key "games", "users"
+  add_foreign_key "gmessages", "games"
+  add_foreign_key "gmessages", "gmessages"
+  add_foreign_key "gmessages", "users"
+  add_foreign_key "gmessages", "users", column: "senduser_id"
   add_foreign_key "lemurs", "projects"
   add_foreign_key "news", "users"
   add_foreign_key "projects", "users"

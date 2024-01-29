@@ -80,6 +80,7 @@ class GamesController < ApplicationController
   end
   
   def show
+    @gmessages = Gmessage.where(game_id: params[:id])
     Game.default_timezone = :utc
     @user = Game.friendly.find(params[:id])
     @meta_description = @user.name + " gépi fordítása \n Közvetlen elérés a legnagyobb fordítás fájlokhoz is! Már #{Game.all.size} játékhoz, #{(Upload.all.size)} fordítás érhető el."

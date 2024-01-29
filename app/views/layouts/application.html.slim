@@ -1,3 +1,5 @@
+|
+  <!DOCTYPE HTML>
 html
   head
     title Monsterv3
@@ -6,6 +8,10 @@ html
     = csp_meta_tag
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_importmap_tags
+    
+    script src="https://cdn.tiny.cloud/1/7ytn400eljk9hmq4o741s2s6hljkek9ydpv83ip40gs2q12w/tinymce/6/tinymce.min.js" referrerpolicy="origin"
+
+
     link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css"
   body[data-pc-preset="preset-10" data-pc-sidebar-theme="dark" data-pc-sidebar-caption="true" data-pc-direction="ltr"  data-pc-theme="dark"]
     .loader-bg
@@ -16,6 +22,7 @@ html
     .pc-container
       .pc-content
         = yield
+        
     //= render "shared/footer"
     script src="../assets2/js/plugins/popper.min.js"
     script src="../assets2/js/plugins/simplebar.min.js"
