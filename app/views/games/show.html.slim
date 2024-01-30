@@ -6,6 +6,9 @@
                 .card-body
                     h1.gameshowh1
                         =@game.name
+                        | (#
+                        = @game.id
+                        | )
         .row.g-0 
             .col-1
             .col-xl-5.tulkep 
@@ -374,44 +377,58 @@
                                                                         h6.pt-badge.bg-light-success
                                                                             | Demo  
                             #profile.tab-pane.fade[role="tabpanel" aria-labelledby="profile-tab"]
-                                = form do |form|
-                                    = form.label :desc
-                                    = form.rich_text_area :desc
+                                = simple_form_for @gmessage, url: gmessages_path, local: true do |f|
+                                    -game_id = Game.friendly.find(params[:id])
+                                    = f.input :title, label: 'Cím', input_html: { class: 'form-control' }
 
-                                    = form.submit "Mentés"
-
-                                p.mb-0
-                                    .col-12.border-info.border-5.border-start style="border-color: #3498DB !important"
-                                        .card.text-white.bg-dark
-                                            .card-header
-                                                
-                                                |Fordító Sándor
-                                                span.badge.bg-info.m-2
-                                                    | Fordító
-                                               
-                                                   
-                                                        
-                                                        
-                                            .card-body
-                                                h5.card-title.text-white
-                                                    = @game.name
-                                                p.card-text
-                                                    | There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.
-                                                    | There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.
-                                                    | There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.
-                                                    | There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.
-                                            .card-footer.bg-dark
-                                                hr
-                                                .row 
-                                                    .col-xl-2.col-sm-12
-                                                        span.text-info.f-w-400
-                                                            | 2024.01.30 20:00
-                                                    .col-xl-8.col-sm-12
-                                                    .col-xl-1.col-sm-12
-                                                        |Jelent
-                                                    .col-xl-1.col-sm-12
-                                                        |Válaszol
-                                p.mb-0
+                                    = f.input :game_id, as: :hidden, input_html: { value: game_id.id }
+                                    |
+                                        <script>
+                                        tinymce.init({
+                                            selector: 'textarea',
+                                            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+                                            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+                                            skin: "oxide-dark",
+                                            content_css: "dark"
+                                        });
+                                        </script>
+                                    textarea id="desc" name="desc" style="padding:10px;"
+                                    .form-actions
+                                        = f.button :submit
+                                - @gmessages.each do |gmes|
+                                    
+                                    p.mb-0
+                                        .col-12.border-info.border-5.border-start style="#{if gmes.user.moderator?; "border-color: #3498DB !important"} #{if gmes.user.admin?; "border-color: #E74C3C !important" }"
+                                            .card.text-white.bg-dark
+                                                .card-header
+                                                    = gmes.user.alias || gmes.user.name
+                                                    - if gmes.user.admin?
+                                                        span.badge.bg-danger.m-2
+                                                            | Admin
+                                                    - if gmes.user.moderator?
+                                                        span.badge.bg-info.m-2
+                                                            | Fordító
+                                                    
+                                                            
+                                                            
+                                                .card-body
+                                                    h5.card-title.text-white
+                                                        = gmes.title
+                                                    p.card-text
+                                                        = gmes.desc
+                                                .card-footer.bg-dark
+                                                    hr
+                                                    .row 
+                                                        .col-xl-2.col-sm-12
+                                                            span.text-info.f-w-400
+                                                                =gmes.created_at.strftime("%Y-%m-%d %H:%M")
+                                                        .col-xl-8.col-sm-12
+                                                        .col-xl-1.col-sm-12
+                                                            //|Jelent
+                                                        .col-xl-1.col-sm-12
+                                                            //|Válaszol
+                                /*
+                                    p.mb-0
                                     .col-12.border-danger.border-5.border-start style="border-color: #E74C3C !important"
                                     
                                         .card.text-white.bg-dark
@@ -459,7 +476,7 @@
                                                                             | There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.
                                                                 
                                                                             
-
+                                    /*
                                             .card-footer.bg-dark
                                                 .row 
                                                     .col-xl-2.col-sm-12
@@ -470,6 +487,7 @@
                                                         |Jelent
                                                     .col-xl-1.col-sm-12
                                                         |Válaszol
+                                
                                                         
 
                             #contact.tab-pane.fade[role="tabpanel" aria-labelledby="contact-tab"]

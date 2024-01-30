@@ -17,4 +17,7 @@ Rails.application.routes.draw do
   get "upload_minus", to: "upload#upload_minus"
   get "upload_bad", to: "upload#upload_bad"
   get "upload_bot_reset", to: "upload#upload_bot_reset"
+  resources :games do
+    resources :gmessages
+  end
 end

@@ -80,9 +80,10 @@ class GamesController < ApplicationController
   end
   
   def show
-    @gmessages = Gmessage.where(game_id: params[:id])
-    Game.default_timezone = :utc
     @user = Game.friendly.find(params[:id])
+    @gmessage = Gmessage.new
+    @gmessages = Gmessage.where(game_id: @user.id).order(created_at: :DESC)
+    Game.default_timezone = :utc
     @meta_description = @user.name + " gépi fordítása \n Közvetlen elérés a legnagyobb fordítás fájlokhoz is! Már #{Game.all.size} játékhoz, #{(Upload.all.size)} fordítás érhető el."
     @meta_image = rails_blob_path(@user.image, only_path: true)
     @ytvideo = Youtubevideo.where(game_id: @user.id).where(ready: true).order("RANDOM()")

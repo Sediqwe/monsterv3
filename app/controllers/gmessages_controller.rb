@@ -21,15 +21,18 @@ class GmessagesController < ApplicationController
 
   # POST /gmessages or /gmessages.json
   def create
+    
     @gmessage = Gmessage.new(gmessage_params)
-
+    @gmessage.user = current_user
+    @gmessage.desc = params[:desc]
     respond_to do |format|
       if @gmessage.save
-        format.html { redirect_to gmessage_url(@gmessage), notice: "Gmessage was successfully created." }
-        format.json { render :show, status: :created, location: @gmessage }
+        @game = Game.friendly.find(gmessage_params[:game_id])
+        format.html { redirect_to game_url(@game), notice: "Gmessage was successfully created." }        
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @gmessage.errors, status: :unprocessable_entity }
+        puts @gmessage.errors.full_messages
+        format  .html { render :new, status: :unprocessable_entity }
+        
       end
     end
   end
@@ -38,6 +41,8 @@ class GmessagesController < ApplicationController
   def update
     respond_to do |format|
       if @gmessage.update(gmessage_params)
+        @gmessage.desc = params[:desc]
+        @gmessage.save
         format.html { redirect_to gmessage_url(@gmessage), notice: "Gmessage was successfully updated." }
         format.json { render :show, status: :ok, location: @gmessage }
       else
@@ -65,6 +70,6 @@ class GmessagesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def gmessage_params
-      params.require(:gmessage).permit(:user_id, :desc, :title, :game_id, :gmessage_id, :warn, :senduser_id)
+      params.require(:gmessage).permit(:user_id, :desc, :title, :game_id, :gmessage_id, :warn, :senduser_id, :desc)
     end
 end
