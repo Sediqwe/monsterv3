@@ -394,9 +394,9 @@
                                         </script>
                                     textarea id="desc" name="desc" style="padding:10px;"
                                     .form-actions
-                                        = f.button :submit
+                                        = f.button :submit, "Beküldés" , class: "btn btn-primary"
                                 - @gmessages.each do |gmes|
-                                    
+                                    .m-5
                                     p.mb-0
                                         .col-12.border-info.border-5.border-start style="#{if gmes.user.moderator?; "border-color: #3498DB !important"} #{if gmes.user.admin?; "border-color: #E74C3C !important" }"
                                             .card.text-white.bg-dark
