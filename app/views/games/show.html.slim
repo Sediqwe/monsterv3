@@ -377,24 +377,27 @@
                                                                         h6.pt-badge.bg-light-success
                                                                             | Demo  
                             #profile.tab-pane.fade[role="tabpanel" aria-labelledby="profile-tab"]
-                                = simple_form_for @gmessage, url: gmessages_path, local: true do |f|
-                                    -game_id = Game.friendly.find(params[:id])
-                                    = f.input :title, label: 'Cím', input_html: { class: 'form-control' }
+                                - if current_user
+                                    = simple_form_for @gmessage, url: gmessages_path, local: true do |f|
+                                        -game_id = Game.friendly.find(params[:id])
+                                        = f.input :title, label: 'Cím', input_html: { class: 'form-control' }
 
-                                    = f.input :game_id, as: :hidden, input_html: { value: game_id.id }
-                                    |
-                                        <script>
-                                        tinymce.init({
-                                            selector: 'textarea',
-                                            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
-                                            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
-                                            skin: "oxide-dark",
-                                            content_css: "dark"
-                                        });
-                                        </script>
-                                    textarea id="desc" name="desc" style="padding:10px;"
-                                    .form-actions
-                                        = f.button :submit, "Beküldés" , class: "btn btn-primary"
+                                        = f.input :game_id, as: :hidden, input_html: { value: game_id.id }
+                                        |
+                                            <script>
+                                            tinymce.init({
+                                                selector: 'textarea',
+                                                plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+                                                toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+                                                skin: "oxide-dark",
+                                                content_css: "dark"
+                                            });
+                                            </script>
+                                        textarea id="desc" name="desc" style="padding:10px;"
+                                        .form-actions
+                                            = f.button :submit, "Beküldés" , class: "btn btn-primary"
+                                - else 
+                                    h2 A hozzászóláshoz jelentkezz be!
                                 - @gmessages.each do |gmes|
                                     .m-5
                                     p.mb-0
