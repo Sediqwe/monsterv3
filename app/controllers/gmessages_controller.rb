@@ -24,7 +24,7 @@ class GmessagesController < ApplicationController
     
     @gmessage = Gmessage.new(gmessage_params)
     @gmessage.user = current_user
-    @gmessage.desc = params[:desc]
+    @gmessage.description = params[:description]
     respond_to do |format|
       if @gmessage.save
         @game = Game.friendly.find(gmessage_params[:game_id])
@@ -70,6 +70,6 @@ class GmessagesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def gmessage_params
-      params.require(:gmessage).permit(:user_id, :desc, :title, :game_id, :gmessage_id, :warn, :senduser_id, :desc)
+      params.require(:gmessage).permit(:description, :title, :game_id)
     end
 end

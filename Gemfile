@@ -2,6 +2,7 @@ source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.2.1"
+gem 'actiontext'
 gem 'gravatar_image_tag'
 gem 'kaminari'
 gem 'friendly_id', '~> 5.4.0'

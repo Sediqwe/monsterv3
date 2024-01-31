@@ -377,11 +377,11 @@
                                                                         h6.pt-badge.bg-light-success
                                                                             | Demo  
                             #profile.tab-pane.fade[role="tabpanel" aria-labelledby="profile-tab"]
+                                
                                 - if current_user
                                     = simple_form_for @gmessage, url: gmessages_path, local: true do |f|
                                         -game_id = Game.friendly.find(params[:id])
                                         = f.input :title, label: 'Cím', input_html: { class: 'form-control' }
-
                                         = f.input :game_id, as: :hidden, input_html: { value: game_id.id }
                                         |
                                             <script>
@@ -393,7 +393,7 @@
                                                 content_css: "dark"
                                             });
                                             </script>
-                                        textarea id="desc" name="desc" style="padding:10px;"
+                                        textarea id="description" name="description" style="padding:10px;"
                                         .form-actions
                                             = f.button :submit, "Beküldés" , class: "btn btn-primary"
                                 - else 
@@ -417,8 +417,9 @@
                                                 .card-body
                                                     h5.card-title.text-white
                                                         = gmes.title
-                                                    p.card-text
-                                                        = gmes.desc
+                                                    p
+                                                        = gmes.description.html_safe
+                                                    
                                                 .card-footer.bg-dark
                                                     hr
                                                     .row 
