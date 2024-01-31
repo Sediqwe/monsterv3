@@ -60,13 +60,36 @@ nav.pc-sidebar
             span.pc-arrow
               i[data-feather="chevron-right"]
           ul.pc-submenu
+            - Gmessage.order(id: :DESC).first(10).each do |message|
+              = link_to game_path(message.game_id) , class: "pc-link" do |link|
+                  - gamename = Game.find(message.game_id).name
+                  li.pc-item.pt-2.bg-primary.rounded.rounded-3.p-2 title="#{gamename.upcase}" style="border-top: 1px solid green;"
+                    b
+                      = truncate(gamename.upcase, length:20, separator: "...")
+                    br
+                    - szoveg = truncate(strip_tags(message.description.html_safe), length: 100, separator: '...')
+                    = szoveg
+                    br
+                    b
+                      |#{message.user.alias || message.user.name}
+                    br                     
+                    |(
+                    |#{message.created_at.strftime("%Y-%m-%d %H:%M") }
+                    |) 
+        li.pc-item.pc-hasmenu
+          a.pc-link[href="#!"]
+            span.pc-micon
+              i.fas.fa-comments
+            span.pc-mtext
+              | Disqus
+            span.pc-arrow
+              i[data-feather="chevron-right"]
+          ul.pc-submenu
             - @rss.each do |rss|
               = link_to rss.link , class: "pc-link" do |link|
                   - path = URI.parse(rss.link.html_safe).path
                   - pathname = Pathname.new(path)
                   li.pc-item.pt-2 title="#{pathname.basename.to_s.gsub("-"," ").upcase}" style="border-top: 1px solid green;"
-                    
-                    - if rss.link.exclude?("gep-monster.translate.goog")
                     b
                       = truncate(pathname.basename.to_s.gsub("-"," ").upcase, length:20, separator: "...")
                     br

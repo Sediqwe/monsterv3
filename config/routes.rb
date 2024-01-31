@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   resources :gmessages
+  resources :games
+  resources :translaters
+  resources :uploads
   root "games#index"
   get "registration", to: "login#registration"
   get "login", to: "login#login"
@@ -10,14 +13,8 @@ Rails.application.routes.draw do
   get "supportlists", to: "supportlists#index"
   patch "settings", to: "users#update"
   get "picturesdeletesettings", to: "users#picturesdeletesettings"
-  resources :games
-  resources :translaters
-  resources :uploads
   get "upload_plus", to: "upload#upload_plus"
   get "upload_minus", to: "upload#upload_minus"
   get "upload_bad", to: "upload#upload_bad"
-  get "upload_bot_reset", to: "upload#upload_bot_reset"
-  resources :games do
-    resources :gmessages
-  end
+  get "upload_bot_reset", to: "upload#upload_bot_reset" 
 end
