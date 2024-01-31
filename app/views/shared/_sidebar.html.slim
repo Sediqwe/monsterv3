@@ -63,11 +63,11 @@ nav.pc-sidebar
             - Gmessage.order(id: :DESC).first(10).each do |message|
               = link_to game_path(message.game_id) , class: "pc-link" do |link|
                   - gamename = Game.find(message.game_id).name
-                  li.pc-item.pt-2.bg-primary.rounded.rounded-3.p-2 title="#{gamename.upcase}" style="border-top: 1px solid green;"
+                  li.pc-item.bg-primary.rounded.rounded-3.p-2 title="#{gamename.upcase}" style="border-top: 1px solid green;"
                     b
                       = truncate(gamename.upcase, length:20, separator: "...")
                     br
-                    - szoveg = truncate(strip_tags(message.description.html_safe), length: 100, separator: '...')
+                    - szoveg = truncate(strip_tags(message.description.html_safe), length: 300, separator: '...')
                     = szoveg
                     br
                     b
