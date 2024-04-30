@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Réteg_2" data-name="Réteg 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70.03 58.46">
+  <defs>
+    <style>
+      .cls-1 {
+        font-family: FreckleFace, 'Freckle Face';
+      }
+
+      .cls-2 {
+        fill: #fff;
+        font-size: 48px;
+      }
+
+      .cls-3 {
+        font-family: BlackOpsOne-Regular, 'Black Ops One';
+      }
+    </style>
+  </defs>
+  <g id="Réteg_1" data-name="Réteg 1">
+    <text class="cls-2" transform="translate(0 42.32)"><tspan class="cls-3" x="0" y="0">G</tspan><tspan class="cls-1" x="35.04" y="0">M</tspan></text>
+  </g>
+</svg>
