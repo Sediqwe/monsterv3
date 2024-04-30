@@ -15,6 +15,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       if @user.save
         redirect_to login_path
       else
+        @uzenet = "Lofaszestifény"
         render 'new'
       end
      
