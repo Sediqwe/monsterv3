@@ -6,7 +6,7 @@ set :stages, %w(production)
 set :default_stage, "production"
 set :use_sudo, true
 set :application, "monsterv3"
-set :repo_url, "https://github.com/Sediqwe/m4.git"
+set :repo_url, "https://github.com/Sediqwe/monsterv3.git"
 set :branch, "main"
 set :deploy_to, "/var/www/monsterv4"
 set :keep_releases, 3
