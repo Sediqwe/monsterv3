@@ -1,6 +1,13 @@
 h1 Home#index
 p Find me in app/views/home/index.html.erb
-
-
+- if current_user 
+    h1 
+        | Üdv 
+        = current_user.username
+    = link_to "Kilépés", logout_path, class:"btn btn-success"
+    = link_to "Szerkesztés", useredit_path, class:"btn btn-success"
+-else
+    = link_to "Belépés", login_path, class:"btn btn-success"
+    = link_to "Reg", sign_in_path, class:"btn btn-success"
 
 
