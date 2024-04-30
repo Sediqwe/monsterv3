@@ -11,16 +11,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    @user = User.new(user_parameters)
-      if @user.save
-        redirect_to login_path
-      else
-        @uzenet = "Lofaszestifény"
-        render 'new'
-      end
-     
+      super do |resource|
+        resource.username = params[:user][:username]
+      end     
     end
-
+  def new
+    super
+  end
   # GET /resource/edit
   # def edit
   #   super
@@ -66,8 +63,5 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
-  private
-  def user_parameters
-    params.require(:user).permit(:username,:email,:password, :password_confirmation)
-  end
+  
 end

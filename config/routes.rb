@@ -5,9 +5,10 @@ Rails.application.routes.draw do
     get 'login', to: 'devise/sessions#create'
     get 'logout', to: 'devise/sessions#destroy'
     get 'useredit', to: 'devise/registrations#edit'
+    
   end
   devise_for :user, controllers: {
-        registrations: 'users/registrations'
+        registrations: 'users/registrations'        
       }
 
   root 'home#index'
