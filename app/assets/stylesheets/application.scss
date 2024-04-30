@@ -10,7 +10,211 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
+ *= require actiontext.css
+ *= require style.css
+ *= require style-preset.css
+ *= require fonts/phosphor/duotone/style.css
+ *= require fonts/tabler-icons.min.css
+ *= require fonts/material.css
+ *= require fonts/fontawesome.css
+ *= require fonts/feather.css
+ *= require fonts/tabler-icons.min.css
  *= require_self
+
+*= require actiontext
  */
- @import "bootstrap";
+ 
+ .tag {
+    display: inline-block;
+    border-radius: 3px;
+    padding: .2em .5em .3em;
+    border-radius: 2px;
+    background: var(--tag-bg);
+    color: var(--text-color);
+    font-weight: 600;
+    margin: .25em .1em
+}
+
+h1.tag {
+    margin-left: 0;
+    margin-right: 0
+}
+
+.tag-sm {
+    font-size: .7em;
+    display: inline-block;
+    letter-spacing: .15ch;
+    font-weight: 400
+}
+
+.tag-lg {
+    font-size: 1em;
+    border-radius: 4px
+}
+
+.tag-bg {
+    background: var(--background)
+}
+
+.tag-green,.tag-pro {
+    background: var(--green);
+    color: #fff
+}
+
+.tag-purple {
+    background: var(--purple);
+    color: #fff
+}
+
+.tag-contrast {
+    background: var(--text-color);
+    color: var(--background)
+}
+
+.tag-javascript {
+    background: #f0db4f;
+    color: #000
+}
+
+.tag-typescript {
+    background: #2775c3;
+    color: #fff
+}
+
+.tag-angular {
+    background: #dc0530;
+    color: #fff
+}
+
+.tag-firebase {
+    background: #ffcb2b;
+    color: #12181a
+}
+
+.tag-vue {
+    background: #41b883;
+    color: #35495e
+}
+
+.tag-rxjs {
+    background: var(--pink);
+    color: var(--gray5)
+}
+
+.tag-node {
+    background: #90c53f;
+    color: #46483d
+}
+
+.tag-cloud-functions {
+    background: var(--blue);
+    color: #fff
+}
+
+.tag-flutter {
+    background: #54c5f8;
+    color: #003b6c
+}
+
+.tag-google-maps {
+    background: #33a668;
+    color: #f8d845
+}
+
+.tag-android {
+    background: #a4c34a;
+    color: #fff
+}
+
+.tag-stripe {
+    color: #fff;
+    background: #6675e0
+}
+
+.tag-machine-learning {
+    color: #fff;
+    background: var(--purple-light)
+}
+
+.tag-python {
+    color: #ffda5d;
+    background: #3879ab
+}
+
+.tag-svelte {
+    color: #fff;
+    background: #ff3e00
+}
+
+.tag-react {
+    color: #00d8ff;
+    background: #222
+}
+
+.tag-ios {
+    color: #fff;
+    background: #000
+}
+
+.tag-minimum-viable-product,.tag-mvp {
+    color: #fff;
+    background-image: linear-gradient(90deg,#ff8901,#db1d5f);
+    font-weight: 700
+}
+
+.tag-ionic {
+    background: #fff;
+    color: #4a8afc
+}
+
+.tag-nest {
+    color: #e0234e;
+    background: #000
+}
+
+.tag-graphql {
+    color: #fff;
+    background: #e10097
+}
+
+.tag-electron {
+    color: #313244;
+    background: #adecf3
+}
+.truncate-overflow {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+.video-container {
+    position: relative;
+    width: 100%;
+    /* Példa: 16:9 arány beállítása (szélesség: 100%, magasság: 0, padding-bottom: 56.25%) */
+    height: 800px;
+    overflow: hidden;
+  }
+
+  /* A YouTube videó stílusai */
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 800px;
+  }
+.warning-container{
+    
+    width: 100%;
+    overflow: hidden;
+    word-wrap: break-word; 
+}
+.tulkep {
+    max-width: 100%;
+    overflow: hidden !important;
+}
+a {
+    text-decoration: none !important;
+}
+.gameshowh1{
+    text-align: center;
+}
