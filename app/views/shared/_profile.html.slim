@@ -1,0 +1,63 @@
+li.dropdown.pc-h-item.header-user-profile
+  a.pc-head-link.dropdown-toggle.arrow-none.me-0[data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" data-bs-auto-close="outside" aria-expanded="false"]
+    // = user_image_tag(current_user, "")
+    
+  .dropdown-menu.dropdown-user-profile.dropdown-menu-end.pc-h-dropdown
+    .dropdown-header.d-flex.align-items-center.justify-content-between
+      h4.m-0
+        | Profil
+      
+    .dropdown-body
+      .profile-notification-scroll.position-relative[style="max-height: calc(100vh - 225px)"]
+        ul.list-group.list-group-flush.w-100
+          li.list-group-item
+            .d-flex.align-items-center
+              .flex-shrink-0
+                //= user_image_tag(current_user , "")
+              .flex-grow-1.mx-3
+                h5.mb-0
+                  = current_user.username                   
+                a.link-primary[href=""]
+                  = current_user.email
+              -if current_user.translater?
+                span.badge.bg-danger
+                  | Fordító
+              -if current_user.admin?
+                span.badge.bg-danger
+                  | Admin
+              
+              
+          li.list-group-item
+            //=link_to pms_path, class: "dropdown-item" do |link|
+              span.d-flex.align-items-center
+                i.ph-duotone.ph-envelope-simple
+                span
+                  | Levelezés
+            
+          li.list-group-item
+            .dropdown-item
+              span.d-flex.align-items-center
+                i.ph-duotone.ph-moon
+                span
+                  | Dark mód
+              .form-check.form-switch.form-check-reverse.m-0
+                input#dark-mode.form-check-input.f-18[type="checkbox" onclick="dark_mode()" role="switch"]
+          li.list-group-item
+            //= link_to settings_path , class: "dropdown-item" do
+              span.d-flex.align-items-center
+                i.ph-duotone.ph-user-circle
+                span
+                  | Beállítások
+            
+            a.dropdown-item[href="#"]
+              span.d-flex.align-items-center
+                i.ph-duotone.ph-bell
+                span
+                  | Értesítések
+          
+          li.list-group-item
+            =link_to logout_path, class:"dropdown-item" do 
+              span.d-flex.align-items-center
+                i.ph-duotone.ph-power
+                span
+                  | Kilépés

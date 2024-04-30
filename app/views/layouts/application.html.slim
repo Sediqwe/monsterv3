@@ -1,0 +1,40 @@
+|
+  <!DOCTYPE HTML>
+html
+  head
+    title Monsterv3
+    meta name="viewport" content="width=device-width,initial-scale=1"
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag "application", "data-turbo-track": "reload"
+    = javascript_importmap_tags
+    
+    link href="https://cdn.jsdelivr.net/npm/smartwizard@6/dist/css/smart_wizard_all.min.css" rel="stylesheet" type="text/css"
+    
+    
+    
+  body[data-pc-preset="preset-10" data-pc-sidebar-theme="dark" data-pc-sidebar-caption="true" data-pc-direction="ltr"  data-pc-theme="dark"]
+    = render "shared/sidebar"
+    = render "shared/header"
+    .loader-bg
+    .pc-container
+      .pc-content
+        = yield
+        
+    = render "shared/footer"
+    
+    script src="/js/simplebar.min.js"
+    
+    script src="/js/pcoded.js"
+    script src="/js/feather.min.js"
+
+    script layout_change('dark');
+    script layout_sidebar_change('dark');
+    script layout_header_change('dark');    
+    -  if request.path == root_path
+      script change_box_container('false');
+    -else 
+      script change_box_container('true');
+    script layout_caption_change('true');
+    script layout_rtl_change('false');
+    script preset_change("preset-1");

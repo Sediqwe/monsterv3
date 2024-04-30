@@ -1,0 +1,252 @@
+nav.pc-sidebar
+  .navbar-wrapper
+    .m-header
+      =link_to root_path , class: "b-brand.text-primary" do
+        = image_tag("logo-white.svg", class: "logo-lg", width: "80%", alt: "logo image")
+
+        span.badge.bg-danger.rounded-pill.ms-2.theme-version
+          | v3.0
+    .card.pc-user-card
+      .card-body
+        - if current_user
+          .nav-user-image
+            a[data-bs-toggle="collapse" href="#navuserlink"]
+              //= user_image_tag(current_user, "user-avtar")
+          #navuserlink.pc-user-collpsed.collapse
+            h4.mb-0
+              = current_user.username
+            span
+              -if current_user.translater?
+                | Fordító
+              -if current_user.admin?
+                | Admin
+            ul
+              /*
+                li
+                  a.pc-user-links
+                    i.ph-duotone.ph-user
+                    span
+                      | My Account
+              
+              li
+                //=link_to settings_path, class: "pc-user-links" do
+                  i.ph-duotone.ph-gear
+                  span
+                    | Beállítások
+              /*
+                li
+                  a.pc-user-links
+                    i.ph-duotone.ph-lock-key
+                    span
+                      | Lock Screen
+              li
+                = link_to logout_path, class:"pc-user-links" do
+                  i.ph-duotone.ph-power
+                  span
+                    | Kilépés
+        - else
+          .nav-user-image
+            = image_tag("logo-white-sm.svg", class: "user-avtar rounded", width: "100px;", alt: "logo image")
+
+            
+    .navbar-content
+      ul.pc-navbar
+        li.pc-item.pc-caption
+          label
+            | Infó
+        li.pc-item.pc-hasmenu
+          a.pc-link[href="#!"]
+            span.pc-micon
+              i.fas.fa-comments
+            span.pc-mtext
+              | Hozzászólások
+            span.pc-arrow
+              i[data-feather="chevron-right"]
+          ul.pc-submenu style=""
+          
+            //- Gmessage.order(id: :DESC).first(10).each do |message|
+              = link_to game_path(message.game_id) , class: "pc-link" do |link|
+                  - gamename = Game.find(message.game_id).name
+                  li.pc-item.p-2.border-start.border-secondary style=" width : 200px;" title="#{gamename.upcase}" 
+                    .bg-secondary.text-black style=" width: 200px; "
+                      b.m-2
+                        = truncate(gamename.upcase, length:20, separator: "...")
+                    br
+                    - szoveg = truncate(message.desc.to_s, length: 300, separator: '...')
+                    = ActionView::Base.full_sanitizer.sanitize(szoveg)
+                    br
+                    b
+                      |   #{message.user.alias || message.user.name}
+                    br                     
+                    |(
+                    |#{message.created_at.strftime("%Y-%m-%d %H:%M") }
+                    |) 
+        li.pc-item.pc-hasmenu
+          a.pc-link[href="#!"]
+            span.pc-micon
+              i.fas.fa-comments
+            span.pc-mtext
+              | Disqus
+            span.pc-arrow
+              i[data-feather="chevron-right"]
+          ul.pc-submenu
+          
+            //- @rss.each do |rss|
+              = link_to rss.link , class: "pc-link" do |link|
+                  - path = URI.parse(rss.link.html_safe).path
+                  - pathname = Pathname.new(path)
+                  li.pc-item.p-2.border-start.border-secondary style=" width : 200px;" title="#{pathname.basename.to_s.gsub("-"," ").upcase}"
+                    .bg-secondary.text-black style=" width: 200px; "
+                      b.m-2
+                        = truncate(pathname.basename.to_s.gsub("-"," ").upcase, length:20, separator: "...")
+                    br
+                    - szoveg = truncate(strip_tags(rss.desc), length: 100, separator: '...')
+                    = szoveg
+                    br
+                    b
+                      |#{rss.user}
+                    br
+
+                    -parsed_date = DateTime.parse(rss.idouj3.to_s) 
+                    |(
+                    |#{parsed_date.strftime("%Y-%m-%d %H:%M") }
+                    |) 
+            
+        li.pc-item.pc-hasmenu
+          a.pc-link[href="#!"]
+            span.pc-micon
+              i.fas.fa-upload
+            span.pc-mtext
+              | Feltöltések
+            span.pc-arrow
+              i[data-feather="chevron-right"]
+          ul.pc-submenu
+          
+            //-@uploading.each do |t|
+              = link_to game_path(t.game), class: "pc-link" do |link|
+                li.pc-item.p-2.border-start.border-secondary style=" width : 200px; "
+                  .bg-secondary.text-black style=" width: 200px; "
+                    b.m-2
+                      =t.game.name
+                  br
+                  |(
+                  =t.created_at.strftime("%Y-%m-%d %H:%M") 
+                  |)
+            
+        li.pc-item.pc-hasmenu
+          a.pc-link[href="#!"]
+            span.pc-micon
+              i.fas.fa-download
+            span.pc-mtext
+              | Letöltések
+            span.pc-arrow
+              i[data-feather="chevron-right"]
+          ul.pc-submenu
+          
+            //-@download.each do |t|
+              = link_to  game_path(t.game), class: "pc-link" do |link|
+                li.pc-item.p-2.border-start.border-secondary style=" width : 200px; "
+                  .bg-secondary.text-black style=" width: 200px; "
+                    b.m-2
+                      =t.game.name
+                  br
+                  |  (
+                  = statisztika(t.game.id,t.id)
+                  |.letöltés)
+                  br 
+                  |#
+                  =t.upload.id
+                  br
+              
+                  -if current_user&.admin?
+                      -begin
+                          - dimensions = t.game.image.blob.metadata
+                          - arany =  (dimensions["width"].to_f / dimensions["height"].to_f )*16/9
+                          - if arany < 3
+                              .buzi.btn-success.btn   
+                                  |Javítandó!!!!!
+                              br
+                          
+                      -rescue
+                          
+                          
+                  |(
+                  =t.created_at.strftime("%Y-%m-%d %H:%M") 
+                  |)             
+        
+      /      
+        li.pc-item.pc-caption
+          label
+            | Other
+          i.ph-duotone.ph-suitcase
+          span
+            | Extra More Things
+        li.pc-item.pc-hasmenu
+          a.pc-link[href="#!"]
+            span.pc-micon
+              i.ph-duotone.ph-tree-structure
+            span.pc-mtext
+              | Menu levels
+            span.pc-arrow
+              i[data-feather="chevron-right"]
+          ul.pc-submenu
+            li.pc-item
+              a.pc-link[href="#!"]
+                | Level 2.1
+            li.pc-item.pc-hasmenu
+              a.pc-link[href="#!"]
+                | Level 2.2
+                span.pc-arrow
+                  i[data-feather="chevron-right"]
+              ul.pc-submenu
+                li.pc-item
+                  a.pc-link[href="#!"]
+                    | Level 3.1
+                li.pc-item
+                  a.pc-link[href="#!"]
+                    | Level 3.2
+                li.pc-item.pc-hasmenu
+                  a.pc-link[href="#!"]
+                    | Level 3.3
+                    span.pc-arrow
+                      i[data-feather="chevron-right"]
+                  ul.pc-submenu
+                    li.pc-item
+                      a.pc-link[href="#!"]
+                        | Level 4.1
+                    li.pc-item
+                      a.pc-link[href="#!"]
+                        | Level 4.2
+            li.pc-item.pc-hasmenu
+              a.pc-link[href="#!"]
+                |  Level 2.3
+                span.pc-arrow
+                  i[data-feather="chevron-right"]
+              ul.pc-submenu
+                li.pc-item
+                  a.pc-link[href="#!"]
+                    | Level 3.1
+                li.pc-item
+                  a.pc-link[href="#!"]
+                    | Level 3.2
+                li.pc-item.pc-hasmenu
+                  a.pc-link[href="#!"]
+                    |  Level 3.3
+                    span.pc-arrow
+                      i[data-feather="chevron-right"]
+                  ul.pc-submenu
+                    li.pc-item
+                      a.pc-link[href="#!"]
+                        | Level 4.1
+                    li.pc-item
+                      a.pc-link[href="#!"]
+                        | Level 4.2
+        /li.pc-item
+          a.pc-link[href="../other/sample-page.html"]
+            span.pc-micon
+              i.ph-duotone.ph-desktop
+            span.pc-mtext
+              | Sample page
+      /.card.nav-action-card
+        .card-body
+          |  Alsó kocka 

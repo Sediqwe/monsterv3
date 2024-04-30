@@ -1,0 +1,151 @@
+li.dropdown.pc-h-item
+  a.pc-head-link.dropdown-toggle.arrow-none.me-0[data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false"]
+    i.ph-duotone.ph-bell
+    span.badge.bg-danger.pc-h-badge
+      | 3
+  .dropdown-menu.dropdown-notification.dropdown-menu-end.pc-h-dropdown
+    .dropdown-header.d-flex.align-items-center.justify-content-between
+      h4.m-0
+        | Notifications
+      ul.list-inline.ms-auto.mb-0
+        li.list-inline-item
+          a.avtar.avtar-s.btn-link-hover-primary[href="#"]
+            i.ti.ti-arrows-diagonal.f-18
+        li.list-inline-item
+          a.avtar.avtar-s.btn-link-hover-danger[href="#"]
+            i.ti.ti-x.f-18
+    .dropdown-body.text-wrap.header-notification-scroll.position-relative[style="max-height: calc(100vh - 235px)"]
+      ul.list-group.list-group-flush
+        li.list-group-item
+          p.text-span
+            | Today
+          .d-flex
+            .flex-shrink-0
+              = image_tag  "avatar-2.jpg", class: "user-avtar avtar avtar-s"
+              
+            .flex-grow-1.ms-3
+              .d-flex
+                .flex-grow-1.me-3.position-relative
+                  h5.mb-0.text-truncate
+                    | Keefe Bond 
+                    span.text-body
+                      |  added new tags to 
+                    |  💪 Design system
+                .flex-shrink-0
+                  span.text-sm.text-muted
+                    | 2 min ago
+              p.position-relative.text-muted.mt-1.mb-2
+                br
+                span.text-truncate
+                  | Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+              span.badge.bg-light-primary.border.border-primary.me-1.mt-1
+                | web design
+              span.badge.bg-light-warning.border.border-warning.me-1.mt-1
+                | Dashobard
+              span.badge.bg-light-success.border.border-success.me-1.mt-1
+                | Design System
+        li.list-group-item
+          .d-flex
+            .flex-shrink-0
+              .avtar.avtar-s.bg-light-primary
+                i.ph-duotone.ph-chats-teardrop.f-18
+            .flex-grow-1.ms-3
+              .d-flex
+                .flex-grow-1.me-3.position-relative
+                  h5.mb-0.text-truncate
+                    | Message
+                .flex-shrink-0
+                  span.text-sm.text-muted
+                    | 1 hour ago
+              p.position-relative.text-muted.mt-1.mb-2
+                br
+                span.text-truncate
+                  | Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+        li.list-group-item
+          p.text-span
+            | Yesterday
+          .d-flex
+            .flex-shrink-0
+              .avtar.avtar-s.bg-light-danger
+                i.ph-duotone.ph-user.f-18
+            .flex-grow-1.ms-3
+              .d-flex
+                .flex-grow-1.me-3.position-relative
+                  h5.mb-0.text-truncate
+                    | Challenge invitation
+                .flex-shrink-0
+                  span.text-sm.text-muted
+                    | 12 hour ago
+              p.position-relative.text-muted.mt-1.mb-2
+                br
+                span.text-truncate
+                  strong
+                    |  Jonny aber 
+                  |  invites to join the challenge
+              button.btn.btn-sm.rounded-pill.btn-outline-secondary.me-2
+                | Decline
+              button.btn.btn-sm.rounded-pill.btn-primary
+                | Accept
+        li.list-group-item
+          .d-flex
+            .flex-shrink-0
+              .avtar.avtar-s.bg-light-info
+                i.ph-duotone.ph-notebook.f-18
+            .flex-grow-1.ms-3
+              .d-flex
+                .flex-grow-1.me-3.position-relative
+                  h5.mb-0.text-truncate
+                    | Forms
+                .flex-shrink-0
+                  span.text-sm.text-muted
+                    | 2 hour ago
+              p.position-relative.text-muted.mt-1.mb-2
+                | Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+        li.list-group-item
+          .d-flex
+            .flex-shrink-0
+              = image_tag  "avatar-2.jpg", class: "user-avtar avtar avtar-s"
+            .flex-grow-1.ms-3
+              .d-flex
+                .flex-grow-1.me-3.position-relative
+                  h5.mb-0.text-truncate
+                    | Keefe Bond 
+                    span.text-body
+                      |  added new tags to 
+                    |  💪 Design system
+                .flex-shrink-0
+                  span.text-sm.text-muted
+                    | 2 min ago
+              p.position-relative.text-muted.mt-1.mb-2
+                br
+                span.text-truncate
+                  | Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+              button.btn.btn-sm.rounded-pill.btn-outline-secondary.me-2
+                | Decline
+              button.btn.btn-sm.rounded-pill.btn-primary
+                | Accept
+        li.list-group-item
+          .d-flex
+            .flex-shrink-0
+              .avtar.avtar-s.bg-light-success
+                i.ph-duotone.ph-shield-checkered.f-18
+            .flex-grow-1.ms-3
+              .d-flex
+                .flex-grow-1.me-3.position-relative
+                  h5.mb-0.text-truncate
+                    | Security
+                .flex-shrink-0
+                  span.text-sm.text-muted
+                    | 5 hour ago
+              p.position-relative.text-muted.mt-1.mb-2
+                | Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+    .dropdown-footer
+      .row.g-3
+        .col-6
+          .d-grid
+            button.btn.btn-primary
+              | Archive all
+        .col-6
+          .d-grid
+            button.btn.btn-outline-secondary
+              | Mark all as read

@@ -1,0 +1,13 @@
+- if flash[:error].present? && flash[:error].is_a?(Array)
+  .alert.alert-primary
+    ul
+      - flash[:error].each do |error|
+        li 
+          h4
+            = error
+- if flash[:notice].present?
+  .alert.alert-primary
+    = flash[:notice]
+
+
+

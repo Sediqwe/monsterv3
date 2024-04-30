@@ -1,0 +1,19 @@
+li.dropdown.pc-h-item
+    a.pc-head-link.dropdown-toggle.arrow-none.me-0[data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false"]
+        i.ph-duotone.ph-sign-in
+    .dropdown-menu.dropdown-menu-end.pc-h-dropdown
+        - if current_user
+            = link_to logout_path , class: "dropdown-item" do |link|
+                i.ph-duotone.ph-sign-out
+                span
+                | Kilépés
+        - else
+            = link_to sign_in_path , class: "dropdown-item" do |link|
+                i.ph-duotone.ph-sign-in
+                span
+                | Belépés
+            = link_to new_user_registration_path , class: "dropdown-item" do |link|
+                i.ph-duotone.ph-user-circle-plus
+                span
+                | Regisztráció
+        

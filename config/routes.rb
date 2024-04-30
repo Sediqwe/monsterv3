@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :games
   
   devise_scope :user do
     get 'sign_in', to: 'devise/sessions#new'
