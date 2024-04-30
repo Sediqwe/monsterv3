@@ -31,3 +31,12 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+      errors:
+        models:
+          user:
+            attributes:
+              email:
+                taken: "Ez az e-mail cím már foglalt."
+              user:
+                take: "Ez a username már foglalt"
