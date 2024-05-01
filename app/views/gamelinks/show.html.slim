@@ -1,0 +1,10 @@
+p style="color: green" = notice
+
+== render @gamelink
+
+div
+  => link_to "Edit this gamelink", edit_gamelink_path(@gamelink)
+  '|
+  =< link_to "Back to gamelinks", gamelinks_path
+
+  = button_to "Destroy this gamelink", @gamelink, method: :delete

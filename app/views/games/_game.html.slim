@@ -12,5 +12,9 @@ div id="#{dom_id game}"
     strong Hidden:
     =< game.hidden
   p
+    strong Gameimage:
+    - if game.gameimage.present?
+      = image_tag  game.gameimage
+  p
     strong Reservedtime:
     =< game.reservedtime

@@ -1,0 +1,11 @@
+p style="color: green" = notice
+
+h1 Gamelinks
+
+#gamelinks
+  - @gamelinks.each do |gamelink|
+    == render gamelink
+    p
+      = link_to "Show this gamelink", gamelink
+
+= link_to "New gamelink", new_gamelink_path

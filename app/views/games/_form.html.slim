@@ -7,7 +7,11 @@
     = f.input :active
     = f.input :reserved
     = f.input :hidden
+    = f.fields_for :game_links do |gamelink_fields|
+      = gamelink_fields.input :linktype_id, collection: Linktype.all.map { |lt| [lt.name, lt.id] }, include_blank: true
+      = gamelink_fields.input :url
     = f.input :reservedtime
+    = f.file_field :gameimage
 
   .form-actions
     = f.button :submit

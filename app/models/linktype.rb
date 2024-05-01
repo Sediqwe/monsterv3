@@ -1,0 +1,3 @@
+class Linktype < ApplicationRecord
+    
+end

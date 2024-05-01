@@ -1,0 +1,2 @@
+module LinktypesHelper
+end

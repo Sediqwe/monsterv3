@@ -1,0 +1,11 @@
+p style="color: green" = notice
+
+h1 Linktypes
+
+#linktypes
+  - @linktypes.each do |linktype|
+    == render linktype
+    p
+      = link_to "Show this linktype", linktype
+
+= link_to "New linktype", new_linktype_path

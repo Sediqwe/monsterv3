@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :linktypes
+  resources :gamelinks
   resources :games
   
   devise_scope :user do
