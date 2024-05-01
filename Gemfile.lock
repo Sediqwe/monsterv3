@@ -321,7 +321,7 @@ DEPENDENCIES
   bootstrap
   capybara
   debug
-  devise (~> 4.9)
+  devise (~> 4.9.4)
   friendly_id (~> 5.4.0)
   gravatar_image_tag
   importmap-rails
