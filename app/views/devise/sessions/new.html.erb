@@ -10,7 +10,8 @@
       <%= f.input :password,
                   required: false,
                   input_html: { autocomplete: "current-password" } %>
-      <%= f.input  :remember_me, as: :boolean , label: "Emlékezz rám (ha bejelölöd, odabaszok a gépedre egy cookie-t )" if devise_mapping.rememberable? %> 
+
+      <input type="checkbox" name="user[remember_me]" value="1" checked="checked" />      
     </div>
 
     <div class="form-actions">
